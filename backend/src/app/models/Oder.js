@@ -12,7 +12,6 @@ const Oder = new Schema({
     customer_id: { type: String, ref: User   },
     buy_date: { type: Date },
     seller_id: { type: String, ref: User },
-  
     phone: { type: String,  },
     address: { type: String, },
     receiver: {type:String},

@@ -13,7 +13,7 @@ const Home = () => {
       <Navbar1 />
       <div className="">
         <Slider style={{ margin: "80px" }} />
-        {/* <Categories /> */}
+        <Categories />
         <Products />
         <Newsletter />
       </div>
