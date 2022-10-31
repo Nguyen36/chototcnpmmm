@@ -203,7 +203,7 @@ const Cart = () => {
                       <Details>
                         <ProductName>{product?.name}</ProductName>
                         <Details>
-                          <b>Category:</b> {product?.brand_id?.name}
+                          <b>Mục:</b> {product?.category_id?.name}
                         </Details>
                       </Details>
                       <Details>{product?.price}</Details>

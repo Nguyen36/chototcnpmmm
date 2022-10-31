@@ -136,7 +136,7 @@ export const productColumns = [
         console.log(params.row.category_id.name),
         <div className="cellWithImg">
          
-          {params.row.category_id.name}
+          {params.row.category_id.name||'No Category'}
         </div>
       );
     },
