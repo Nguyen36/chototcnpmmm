@@ -59,7 +59,8 @@ const Navbar1 = () => {
         className="bg-gradient-to-r from-pink-500 to-yellow-500"
       >
         <Toolbar className="flex justify-between p-3">
-          <div className="flex gap-4 items-center" style={{marginLeft:40}}>
+          <div className="flex gap-4 items-center" 
+          style={{marginLeft:40,textDecoration:"none"}}>
             <div className="w-[100px] h[100px] ">
               <img
                 className="object-fill w-full h-full rounded-md"
@@ -71,28 +72,37 @@ const Navbar1 = () => {
               Chợ tốt
             </Typography> */}
           </div>
-          <div className="ml-[20px] flex justify-between gap-10" style={{marginRight:80}}>
-            <Link to="/" className="text-[20px]">
+          <div className="ml-[20px] flex justify-between gap-10" 
+          style={{marginRight:100
+          }}>
+            <Link to="/" className="text-[20px]"
+            style={{textDecoration:"none",color:'white !important'}}>
               Trang chủ
             </Link>
             
-            <Link to="/cart" className="text-[20px]">
+            <Link to="/cart" className="text-[20px]" style={{textDecoration:"none"}}>
               <ShoppingCart></ShoppingCart>
               Giỏ hàng
+
             </Link>
             {user ? (
               <div>
-                <Link to={`/myprofile/${user?.slug}`} className="text-[20px]">
+                <Link to={`/myprofile/${user?.slug}`} 
+                style={{ textDecoration: "none" }}
+                className="text-[20px] mr-10 gap-10">
                   {" "}
                   My Profile
                 </Link>
-                <Link to={`/myorder/${user?.slug}`} className="text-[20px]">
+                <Link to={`/myorder/${user?.slug}`} 
+                style={{ textDecoration: "none" }}
+                className="text-[20px] ml-auto mr-10 gap-10">
                   {" "}
                   My Orders
                 </Link>
                 <Link
                   to="/logout"
                   onClick={handleLogout}
+                  className="text-[20px]  gap-10"
                   style={{ textDecoration: "none" }}
                 >
                   Logout
