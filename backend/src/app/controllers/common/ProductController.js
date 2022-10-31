@@ -24,6 +24,7 @@ class ProductController {
 
     // [delete] /product/delete/:id
     async deleteProduct(req,res){
+        console.log(req.params.id)
         try {
             await Product.findByIdAndDelete(req.params.id);
             res.status(200).json("Product deleted");
@@ -69,11 +70,12 @@ class ProductController {
      //  [POSt] /Product/new
      async newProduct  (req, res, next){
          try { const formData= req.body
-        
+            
             Product.init()
 
             const product = new Product(formData)
-    
+            product._id = (Number(product._id)+2).toString()
+            console.log(product._id)
             product.save()
                 .then((product) => res.status(200).json(product))
                 .catch(error => {

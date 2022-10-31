@@ -91,7 +91,6 @@ export const productColumns = [
   { field: "_id", headerName: "ID", width: 50 ,
   renderCell: (params) => {
     return (
-      console.log(params.row),
       <div className="cellWithImg">
        
         {params.row._id}
@@ -133,7 +132,6 @@ export const productColumns = [
     width: 120,
     renderCell: (params) => {
       return (
-        console.log(params.row.category_id.name),
         <div className="cellWithImg">
          
           {params.row.category_id.name||'No Category'}

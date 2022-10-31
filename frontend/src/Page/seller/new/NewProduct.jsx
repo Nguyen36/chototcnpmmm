@@ -156,6 +156,7 @@ const New = ({ title, action }) => {
 
               <select
                 className="table-group-action-input form-control"
+                value={status}
                 onChange={(e) => setStatus(e.target.value)}
               >
                 <option value="Published">Published</option>

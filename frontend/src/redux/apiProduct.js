@@ -10,7 +10,7 @@ export const createProduct = async(product,dispatch,navigate) =>{
        
        const res= await axios.post("/product/new",product)
        dispatch(createSuccess(res.data))
-        
+        navigate(-1)
        
            
    }catch(err){
@@ -141,8 +141,7 @@ export const get1ProductBySlug = async(dispatch,slug) =>{
 export const deleteProduct = async(accessToken,dispatch,id) =>{
     dispatch(deleteProductStart())
    try{
-       
-       const res= await axios.delete("/product/delete/"+id,{
+       const res= await axios.delete(`/product/delete/${id}`,{
            headers: {token: `Bearer ${accessToken}`},
        })
        dispatch(deleteProductSuccess(res.data))

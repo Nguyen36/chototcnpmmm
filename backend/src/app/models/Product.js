@@ -33,5 +33,4 @@ const Product = new Schema({
     timestamps: true
 });
 
-//Product.plugin(AutoIncrement,);
 module.exports = mongoose.model('Product',Product);

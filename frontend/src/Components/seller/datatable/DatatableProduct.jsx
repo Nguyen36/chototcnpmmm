@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { deleteUser, } from "../../../redux/apiRequest";
-import {  getProductSeller } from "../../../redux/apiProduct";
+import {  deleteProduct, getProductSeller } from "../../../redux/apiProduct";
 const Datatable = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -16,6 +16,7 @@ const Datatable = () => {
  
   const productList = useSelector((state)=> state.product.products?.allProduct)
   const [data, setData] = useState(productList);
+  const [del,setDelete]=useState(false)
 
   useEffect(()=>{
     if(user.role !=='2'){
@@ -28,14 +29,15 @@ const Datatable = () => {
    
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[]) 
+  },[del]) 
 
  
 
   
   const handleDelete = (id) => {
-    setData(data.filter((item) => item._id !== id));
-    deleteUser(user?.accessToken, dispatch, id)
+    setData(productList.filter((item) => item._id !== id));
+    deleteProduct(user?.accessToken, dispatch, id)
+    setDelete(!del)
   };
 
   const actionColumn = [
