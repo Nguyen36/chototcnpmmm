@@ -1,14 +1,23 @@
 import { categories } from "../../data";
 import CategoryItem from "./CategoryItem";
-
+import Slider from "react-slick";
 
 const Categories = () => {
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
-    <div className="flex p-5 justify-between">
-      {categories.map((item) => (
-        <CategoryItem item={item} key={item.id} />
-      ))}
-    </div>
+    <Slider {...settings}>
+      <div className="!flex p-5 justify-between pb-[30px] flex-row">
+        {categories.map((item) => (
+          <CategoryItem item={item} key={item.id} />
+        ))}
+      </div>
+    </Slider>
   );
 };
 

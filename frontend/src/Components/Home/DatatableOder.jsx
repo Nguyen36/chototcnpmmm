@@ -54,7 +54,7 @@ const Datatable = () => {
       </div>   
         <DataGrid getRowId={(row) => row?._id}
         className="datagrid"
-        rows={oderList}
+        rows={oderList||[]}
         columns={OderColumns.concat(actionColumn)}
         pageSize={8}
         rowsPerPageOptions={[8]}

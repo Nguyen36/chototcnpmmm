@@ -4,57 +4,58 @@ import Navbar from "../../../Components/admin/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams,  } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-import { createProduct, editProduct, get1Product } from "../../../redux/apiProduct";
+import {
+  createProduct,
+  editProduct,
+  get1Product,
+} from "../../../redux/apiProduct";
 import axios from "axios";
 
-const New = ({  title,action }) => {
-  const dispatch= useDispatch();
-  const navigate= useNavigate();
+const New = ({ title, action }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const user = useSelector((state) => state.auth.login?.currentUser)
+  const user = useSelector((state) => state.auth.login?.currentUser);
 
-  const selectedUser = useSelector((state) => state.product.products?.allProduct)
+  const selectedUser = useSelector(
+    (state) => state.product.products?.allProduct
+  );
   const [file, setFile] = useState(selectedUser?.image);
 
-  const [name,setName]=useState(selectedUser?.name);
-  const [price,setPrice] = useState(selectedUser?.price);
-  const [category_id,setCategory]= useState(selectedUser?.category_id);
-  const [brand_id,setBrand]= useState(selectedUser?.brand_id);
-  const [amount,setAmount] = useState(selectedUser?.amount);
-  const [description,setDescription]=useState(selectedUser?.description);  
-  const [status,setStatus]=useState(selectedUser?.status);  
-  const [productState,setProductState]=useState()
-  const {productid}= useParams()
-  const getLengthProduct=async() =>{
-    
-    try{
-        
-        const res= await axios.get("/product/getLength")
-        setProductState(res.data)
-         
-    }catch(err){
-      return err
+  const [name, setName] = useState(selectedUser?.name);
+  const [price, setPrice] = useState(selectedUser?.price);
+  const [category_id, setCategory] = useState(selectedUser?.category_id||"1");
+  const [brand_id, setBrand] = useState(selectedUser?.brand_id);
+  const [amount, setAmount] = useState(selectedUser?.amount);
+  const [description, setDescription] = useState(selectedUser?.description);
+  const [status, setStatus] = useState(selectedUser?.status);
+  const [productState, setProductState] = useState();
+  const { productid } = useParams();
+  const getLengthProduct = async () => {
+    try {
+      const res = await axios.get("/product/getLength");
+      setProductState(res.data);
+    } catch (err) {
+      return err;
     }
-  }
-  
+  };
+
   //Load trang
-  useEffect(()=>{
-  
-    if(user?.accessToken){
-      get1Product(user?.accessToken,dispatch,productid)
-      getLengthProduct()
+  useEffect(() => {
+    if (user?.accessToken) {
+      get1Product(user?.accessToken, dispatch, productid);
+      getLengthProduct();
     }
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[]) 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const handleLogin = (e) =>{
-    e.preventDefault()
-    
+  const handleInsert = (e) => {
+    e.preventDefault();
     const newProduct = {
-      _id:productState+1,
+      _id: productState + 1,
       name,
       price,
       category_id,
@@ -63,10 +64,9 @@ const New = ({  title,action }) => {
       seller_id: user._id,
       status,
       description,
-     
-    }
-    createProduct(newProduct,dispatch,navigate,productid,user?.accessToken)
-  }
+    };
+    createProduct(newProduct, dispatch, navigate, productid, user?.accessToken);
+  };
   return (
     <div className="new">
       <Sidebar />
@@ -77,18 +77,13 @@ const New = ({  title,action }) => {
         </div>
         <div className="bottom">
           <div className="left">
-            
             <img
-              src={
-                file
-                  ? URL.createObjectURL(file)
-                  : `${selectedUser?.image}`
-              }
+              src={file ? URL.createObjectURL(file) : `${selectedUser?.image}`}
               alt=""
             />
           </div>
           <div className="right">
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleInsert}>
               <div className="formInput">
                 <label htmlFor="file">
                   Image: <DriveFolderUploadOutlinedIcon className="icon" />
@@ -101,46 +96,74 @@ const New = ({  title,action }) => {
                 />
               </div>
 
-                <div className="formInput" >
-                  <label>Name</label>
-                  <input type='text' placeholder={selectedUser?.name} onChange={(e)=>setName(e.target.value)} />
-                </div>
-                <div className="formInput" >
-                  <label>Price</label>
-                  <input type='text' placeholder={selectedUser?.price} onChange={(e)=>setPrice(e.target.value)}/>
-                </div>
-           
-                <div className="formInput" >
-                  <label>Amount</label>
-                  <input type='text'placeholder={selectedUser?.amount} onChange={(e)=>setAmount(e.target.value)}/>
-                </div>
-           
-            
-              
-                <div className="formInput" >
-                  <label>Description</label>
-                  <input type='text'  onChange={(e)=>setDescription(e.target.value)} />
-                </div>
-           
-                <div className="formInput" >
-                  <label>Brand</label>
-                  <input type='text' placeholder={selectedUser?.brand_id}  onChange={(e)=>setBrand(e.target.value)}/>
-                </div>
-                
-                <select className="table-group-action-input form-control" placeholder={selectedUser?.category_id} onChange={(e)=>setCategory(e.target.value)} > 
-                <option value="1" >Xe số</option>
-                <option value="2" >Xe tay ga</option>
-                <option value="3" >Xe côn tay</option>
-                <option value="4" >Xe mô tô</option>
+              <div className="formInput">
+                <label>Name</label>
+                <input
+                  type="text"
+                  placeholder={selectedUser?.name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+              <div className="formInput">
+                <label>Price</label>
+                <input
+                  type="text"
+                  placeholder={selectedUser?.price}
+                  onChange={(e) => setPrice(e.target.value)}
+                />
+              </div>
+
+              <div className="formInput">
+                <label>Amount</label>
+                <input
+                  type="text"
+                  placeholder={selectedUser?.amount}
+                  onChange={(e) => setAmount(e.target.value)}
+                />
+              </div>
+
+              <div className="formInput">
+                <label>Description</label>
+                <input
+                  type="text"
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+              </div>
+
+              <div className="formInput">
+                <label>Brand</label>
+                <input
+                  type="text"
+                  placeholder={selectedUser?.brand_id}
+                  onChange={(e) => setBrand(e.target.value)}
+                />
+              </div>
+
+              <select
+                className="table-group-action-input form-control"
+                placeholder={selectedUser?.category_id}
+                value={category_id}
+                onChange={(e) => {
+                  console.log(category_id)
+                  setCategory(e.target.value);
+                }}
+              >
+                <option value="1">Xe cộ</option>
+                <option value="2">Bất động sản</option>
+                <option value="3">Điện tử</option>
+                <option value="4">Nội thất</option>
               </select>
-           
-                
-                <select className="table-group-action-input form-control" onChange={(e)=>setStatus(e.target.value)} > 
-                <option value="Published" >Published</option>
-                <option value="Unpublished" >Unpublished</option>
+
+              <select
+                className="table-group-action-input form-control"
+                value={status}
+                onChange={(e) => setStatus(e.target.value)}
+              >
+                <option value="Published">Published</option>
+                <option value="Unpublished">Unpublished</option>
               </select>
-           
-              <button type='submit'>Send</button>
+
+              <button type="submit">Send</button>
             </form>
           </div>
         </div>

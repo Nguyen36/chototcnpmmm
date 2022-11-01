@@ -56,9 +56,11 @@ export const registerUser = async(user,dispatch,navigate) =>{
 export const editUser = async(user,dispatch,navigate,id,accessToken) =>{
     dispatch(editUserStart())
    try{
-       
+       console.log(accessToken)
+       const res= await axios.put(`/user/edit/${id}`,user,{
        const res= await axios.put(`/user/edit/${id}`,user,{
         headers: {token: `Bearer ${accessToken}`},})
+        console.log(res)
        dispatch(editUserSuccess(res.data))
         //navigate('/login')
        

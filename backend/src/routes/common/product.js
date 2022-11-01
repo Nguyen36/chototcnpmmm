@@ -20,7 +20,7 @@ router.get("/getTop5", productController.getTop5Product);
 
 router.get("/category/:id", productController.getCategory1);
 
-//DELETE USER
+//DELETE PRODUCT
 router.delete("/delete/:id", verifyTokenAndSeller, productController.deleteProduct);
 
 router.get("/getbyslug/:slug", productController.getProductBySlug);

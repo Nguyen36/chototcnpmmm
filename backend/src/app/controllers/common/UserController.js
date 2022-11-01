@@ -41,8 +41,14 @@ class UserController {
     }
      //[PUT]  /user/edit/:id
      async update (req,res,next){
-        await  User.updateOne({_id: req.params.id},req.body)
-            .then(() => res.status(200).json('Updated Success'))
+        const formData = req.body;
+        const salt = await bcrypt.genSalt(10);
+        formData.password = await bcrypt.hash(formData.password, salt);
+
+        await  User.updateOne({id: req.params.id},formData)
+            .then(() => {
+                res.status(200).json('Updated Success')
+            })
             .catch((err) =>{
                 return res.status(500).json(err);
             })

@@ -22,6 +22,7 @@ const Left = styled.div`
 
 const Logo = styled.div`
   text-align: center;
+  margin-top: 50px;
 `;
 
 const Desc = styled.p`
@@ -118,16 +119,14 @@ const Footer = () => {
       <Left>
         <Logo>
           <img
-            src="https://htpshop.vn/public/userfiles/logo/htp-shop.webp"
-            style={{ height: "100px" }}
+            src="https://static.chotot.com/storage/default/transparent_logo.webp"
+            style={{ height: "50px" }}
+            alt=""
           />
         </Logo>
         <Desc>
-          HPT trang web thương mại điện tử số một Việt Nam chuyên về các sản
-          phảm xe hai bánh, xe máy, xe tay ga,... Luôn có nhiều chương trình
-          khuyến mãi hấp dẫn, miễn phí giao hàng trên toàn quốc với các dòng xe
-          đến từ các thương hiệu nổi tiếng. <br /> <br />
-          HPT luôn cam kết phục vụ với chất lượng tốt nhất dành cho khách hàng.
+          Chuyên trang hoạt động trao đổi hàng hoá số 1 VN <br /> <br />
+          Chợ tốt luôn cam kết phục vụ với chất lượng tốt nhất dành cho khách hàng.
         </Desc>
         <SocialContainer>
           <Icon color="3B5999">

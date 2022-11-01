@@ -134,23 +134,23 @@ export const productColumns = [
       return (
         <div className="cellWithImg">
          
-          {params.row.category_id.name}
+          {params.row.category_id.name||'No Category'}
         </div>
       );
     },
   },
-  {
-    field: "brand",
-    headerName: "Brand",
-    width: 100,
-    renderCell: (params) => {
-      return (
-        <div className={`cellWithStatus `}>
-          {params.row.brand_id.name}
-        </div>
-      );
-    },
-  },
+  // {
+  //   field: "brand",
+  //   headerName: "Brand",
+  //   width: 100,
+  //   renderCell: (params) => {
+  //     return (
+  //       <div className={`cellWithStatus `}>
+  //         {params.row.brand_id.name}
+  //       </div>
+  //     );
+  //   },
+  // },
   {
     field: "amount",
     headerName: "Amount",

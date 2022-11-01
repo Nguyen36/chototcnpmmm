@@ -23,12 +23,12 @@ const ContainerItem = styled.div`
 
 const Name = styled.h5`
   font-size: 16px;
-  text-align: right;
+  text-align: center;
 `;
 
 const Price = styled.h5`
   font-size: 16px;
-  text-align: right;
+  text-align: center;
   color: #f55f8d;
   font-weight: bold;
 `;

@@ -102,23 +102,26 @@ const New = ({ title, action }) => {
 
   const handleChangePass = (e) => {
     e.preventDefault();
-
     const newUser = {
       password: password,
     };
+    console.log(newUser.password);
     editUser(newUser, dispatch, navigate, id, user?.accessToken);
   };
   return (
     <div className="new">
       <div className="newContainer">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"/>
+
         <Tabs
-          defaultActiveKey="home"
+          defaultActiveKey="changeAvatar"
           transition={false}
-          id="noanim-tab-example"
+          id="fill-tab-example"
           className="mb-3"
         >
           <Tab eventKey="changePassword" title="Change Password">
-            <Form onSubmit={handleChangePass}>
+            <form onSubmit={handleChangePass} 
+            style={{textAlign:'center'}}>
               <ContactItem className="formInput">
                 <ContactDiv>
                   <FontAwesomeIcon
@@ -156,10 +159,10 @@ const New = ({ title, action }) => {
               </ContactItem>
 
               <Button type="submit">Change</Button>
-            </Form>
+            </form>
           </Tab>
           <Tab eventKey="changeAvatar" title="Change Avatar">
-            <Form>
+            <form  style={{textAlign:'center'}}>
               <div className="left">
                 <img
                   src={`${user?.image}`}
@@ -179,10 +182,10 @@ const New = ({ title, action }) => {
                 />
               </div>
               <Button type="submit">Change</Button>
-            </Form>
+            </form>
           </Tab>
           <Tab eventKey="personalInfo" title="Personal Info">
-            <Form onSubmit={handleChangeProfile}>
+            <form  style={{textAlign:'center'}} onSubmit={handleChangeProfile}>
               <ContactItem>
                 <ContactDiv>
                   <FontAwesomeIcon icon={faUser} style={{ color: "#3a7bd5" }} />
@@ -226,7 +229,7 @@ const New = ({ title, action }) => {
               </ContactItem>
 
               <Button type="submit">Change</Button>
-            </Form>
+            </form>
           </Tab>
         </Tabs>
       </div>

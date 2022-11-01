@@ -6,7 +6,6 @@ import {} from "react-bootstrap";
 import { useState } from "react";
 import { direct, loginUser } from "../../redux/apiRequest";
 
-
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -14,7 +13,7 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.2),
       rgba(255, 255, 255, 0.2)
     ),
-    url("https://swall.teahub.io/photos/small/16-160847_yamaha-yzf-r1-2020-bike-4k-wallpaper-yzf.jpg");
+    url("https://www.farmersalmanac.com/wp-content/uploads/2021/04/Pink-forget-me-not-flower_as246441750-950x631.jpeg");
   background-size: cover;
   transform: scaleX(-1);
   position: absolute;
@@ -84,6 +83,7 @@ const Url = styled.a`
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -94,7 +94,7 @@ const Login = () => {
       username: username,
       password: password,
     };
-    
+
     loginUser(newUser, dispatch, navigate);
   };
 
@@ -117,6 +117,10 @@ const Login = () => {
           </ContainerButton>
           <Url href="/register">CREATE A NEW ACCOUNT</Url>
           <Url>Do you not you remember the password</Url>
+          <h1 className="text-center" style={{color:'blue'}} onClick={() => navigate("/")}>
+            {" "}
+            Trở về trang chủ
+          </h1>
         </Form>
       </Wrapper>
     </Container>
