@@ -69,7 +69,7 @@ class OderController {
   //  [POSt] /
   async getFullOder  (req, res, next){
 
-
+    
     OderDetail.find({oder_id:req.params.id})
         .populate('oder_id')
         .populate({
@@ -86,6 +86,7 @@ class OderController {
         .populate('product_id')
         .then((oder) => {
             console.log(req.params.id)
+            console.log(oder)
             res.status(200).json(oder)
         })
         .catch(error => {

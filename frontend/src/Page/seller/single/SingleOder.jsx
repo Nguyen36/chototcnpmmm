@@ -20,7 +20,9 @@ const Single = () => {
 
   const user = useSelector((state) => state.auth.login?.currentUser)
   const selectedOder = useSelector((state) => state.oder.full?.detail)
+  
   const {orderId} = useParams()
+  console.log(orderId)
  // console.log(userId)
  const [status, setStatus] = useState(selectedOder[0]?.oder_id.status)
  const a=selectedOder
@@ -60,24 +62,24 @@ const Single = () => {
                 className="itemImg"
               />
               <div className="details">
-                <h1 className="itemTitle">{selectedOder[0].oder_id.customer_id?.fullname}</h1>
+                <h1 className="itemTitle">{selectedOder[0]?.oder_id.customer_id?.fullname}</h1>
                 <div className="detailItem">
                   <span className="itemKey">Email:</span>
-                  <span className="itemValue">{selectedOder[0].oder_id.customer_id?.email}</span>
+                  <span className="itemValue">{selectedOder[0]?.oder_id.customer_id?.email}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Phone:</span>
-                  <span className="itemValue">{selectedOder[0].oder_id.customer_id?.phone}</span>
+                  <span className="itemValue">{selectedOder[0]?.oder_id.customer_id?.phone}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Address:</span>
                   <span className="itemValue">
-                  {selectedOder[0].oder_id?.address}
+                  {selectedOder[0]?.oder_id?.address}
                   </span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Receiver:</span>
-                  <span className="itemValue">{selectedOder[0].oder_id?.receiver}</span>
+                  <span className="itemValue">{selectedOder[0]?.oder_id?.receiver}</span>
                 </div>
               </div>
             </div>

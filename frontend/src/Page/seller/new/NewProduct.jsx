@@ -5,7 +5,8 @@ import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUpload
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-
+import FileBase64 from 'react-file-base64';
+import {CardMedia} from "@material-ui/core"
 import {
   createProduct,
   editProduct,
@@ -59,6 +60,7 @@ const New = ({ title, action }) => {
       name,
       price,
       category_id,
+      image: file,
       amount,
       brand_id,
       seller_id: user._id,
@@ -77,9 +79,14 @@ const New = ({ title, action }) => {
         </div>
         <div className="bottom">
           <div className="left">
-            <img
+            {/* <img
               src={file ? URL.createObjectURL(file) : `${selectedUser?.image}`}
               alt=""
+            /> */}
+            <CardMedia
+              image={file || ''}
+              title='Title'
+              
             />
           </div>
           <div className="right">
@@ -88,12 +95,19 @@ const New = ({ title, action }) => {
                 <label htmlFor="file">
                   Image: <DriveFolderUploadOutlinedIcon className="icon" />
                 </label>
-                <input
+                <FileBase64
+                  accept='image/*'
+                  multiple={false}
+                  type='file'
+                  
+                  onDone={({ base64 }) => setFile(base64)}
+                />
+                {/* <input
                   type="file"
                   id="file"
                   onChange={(e) => setFile(e.target.files[0])}
                   style={{ display: "none" }}
-                />
+                /> */}
               </div>
 
               <div className="formInput">

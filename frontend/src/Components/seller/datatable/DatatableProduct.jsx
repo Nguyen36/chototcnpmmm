@@ -19,7 +19,7 @@ const Datatable = () => {
   const [del,setDelete]=useState(false)
 
   useEffect(()=>{
-    if(user.role !=='2'){
+    if(user?.role !=='2'){
       navigate('/')
     }
 
