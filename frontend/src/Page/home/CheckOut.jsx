@@ -130,6 +130,7 @@ const CheckOut = () => {
   const navigate = useNavigate();
 
   const user = useSelector((state) => state.auth.login?.currentUser);
+  console.log(user);
   const cart = useSelector((state) => state.cart.carts?.allCart);
 
   //Oder
@@ -214,6 +215,8 @@ const CheckOut = () => {
   };
   return (
     <Container>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"/>
+
       <Navbar />
       <Wrapper>
         <Accordion defaultActiveKey="0" flush>
@@ -225,7 +228,7 @@ const CheckOut = () => {
               <Form>
                 <Form.Group className="mb-3">
                   <Form.Label>
-                    <span className="text-danger">*</span> Name
+                    <span className="text-danger">*</span> <h6>Name: </h6>
                   </Form.Label>
                   <Form.Control
                     required

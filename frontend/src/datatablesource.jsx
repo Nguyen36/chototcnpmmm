@@ -158,7 +158,7 @@ export const productColumns = [
     renderCell: (params) => {
       return (
         <div className={`cellWithStatus `}>
-          {params.row.amount}
+          {params.row.amount||''}
         </div>
       );
     },
@@ -171,7 +171,7 @@ export const productColumns = [
       return (
         <div className="cellWithImg">
          
-          {params.row.seller_id.fullname}
+          {params.row.seller_id.fullname||''}
         </div>
       );
     },
@@ -184,7 +184,7 @@ export const productColumns = [
     renderCell: (params) => {
       return (
         <div className={`cellWithStatus `}>
-          {params.row.status}
+          {params.row.status||''}
         </div>
       );
     },
@@ -199,7 +199,7 @@ export const OderColumns = [
     return (
       <div className="cellWithImg">
        {console.log(params.row)}
-        {params.row._id}
+        {params.row._id||''}
       </div>
     );
   },
@@ -210,7 +210,7 @@ export const OderColumns = [
     renderCell: (params) => {
       return (
         <div className="cellWithImg">
-          {params.row.buy_date}
+          {params.row.buy_date||''}
         </div>
       );
     },
@@ -225,7 +225,7 @@ export const OderColumns = [
       return (
         <div className="cellWithImg">
          
-          {params.row.customer_id.fullname}
+          {params.row.customer_id.fullname||''}
         </div>
       );
     },
@@ -237,7 +237,7 @@ export const OderColumns = [
     renderCell: (params) => {
       return (
         <div className={`cellWithStatus `}>
-          {params.row.phone}
+          {params.row.phone||''}
         </div>
       );
     },
@@ -249,7 +249,7 @@ export const OderColumns = [
     renderCell: (params) => {
       return (
         <div className={`cellWithStatus `}>
-          {params.row.address}
+          {params.row.address||''}
         </div>
       );
     },
@@ -262,7 +262,7 @@ export const OderColumns = [
     renderCell: (params) => {
       return (
         <div className={`cellWithStatus `}>
-          {params.row.receiver}
+          {params.row.receiver||''}
         </div>
       );
     },
@@ -277,7 +277,7 @@ export const OderColumns = [
     renderCell: (params) => {
       return (
         <div className={`cellWithStatus `}>
-          {params.row.pay_id.name}
+          {params.row.pay_id.name||''}
         </div>
       );
     },
@@ -289,7 +289,7 @@ export const OderColumns = [
     renderCell: (params) => {
       return (
         <div className={`cellWithStatus `}>
-          {params.row.status.name}
+          {params.row.status.name?params.row.status.name:''}
         </div>
       );
     },

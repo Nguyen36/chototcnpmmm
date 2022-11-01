@@ -5,7 +5,7 @@ import Navbar from "../../Components/Home/Navbar";
 
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
@@ -158,6 +158,7 @@ const Cart = () => {
   const navigate = useNavigate();
 
   const user = useSelector((state) => state.auth.login?.currentUser);
+  console.log(user);
   let cart = useSelector((state) => state.cart.carts?.allCart);
 
   const Sum = cart?.reduce((total, currentValue) => {
@@ -240,9 +241,9 @@ const Cart = () => {
               <Hr />
               <FreeShip>* Miễn phí ship toàn quốc</FreeShip>
               <ContainerButton>
-                <a href="/checkout">
+                <Link to="/checkout">
                   <Button type="submit">Check Out</Button>
-                </a>
+                </Link>
               </ContainerButton>
             </CheckOut>
           </CartOrder>

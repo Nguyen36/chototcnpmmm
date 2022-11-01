@@ -15,6 +15,7 @@ import {
   faUser,
   faEnvelope,
   faPhone,
+  faAddressBook,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Button = styled.button`
@@ -78,6 +79,7 @@ const New = ({ title, action }) => {
 
   const [username, setUsername] = useState(user?.username);
   const [password, setPassword] = useState("");
+  const [address, setAddress] = useState(user?.address);
   const [confirmPassword, setconfirmPassword] = useState("");
   const [currentPassword, setcurrentPassword] = useState("");
   const [email, setEmail] = useState(user?.email);
@@ -91,7 +93,6 @@ const New = ({ title, action }) => {
 
     const newUser = {
       username: username,
-      password: password,
       email,
       phone,
       fullname,
@@ -227,6 +228,7 @@ const New = ({ title, action }) => {
                   onChange={(e) => setPhone(e.target.value)}
                 />
               </ContactItem>
+             
 
               <Button type="submit">Change</Button>
             </form>
