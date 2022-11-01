@@ -38,7 +38,7 @@ const Single = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]) 
   const handleEdit = ()=>{
-    console.log('1')
+    
   }
 
   return (
@@ -105,6 +105,7 @@ const Single = () => {
                   <span className="itemKey">Status:</span>
                   <select className="a" onChange={(e)=>setStatus(e.target.value)} value ={status} > 
                     <option value="1" >Chờ xác nhận</option>
+
                     <option value="4" >Đã hủy</option>
                   </select>
                 

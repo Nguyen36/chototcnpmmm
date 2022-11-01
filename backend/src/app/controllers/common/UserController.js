@@ -43,7 +43,9 @@ class UserController {
      async update (req,res,next){
         const formData = req.body;
         const salt = await bcrypt.genSalt(10);
-        formData.password = await bcrypt.hash(formData.password, salt);
+        if(formData.password){
+            formData.password = await bcrypt.hash(formData.password, salt);
+        }
 
         await  User.updateOne({id: req.params.id},formData)
             .then(() => {

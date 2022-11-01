@@ -250,7 +250,7 @@ export const OderColumns = [
     renderCell: (params) => {
       return (
         <div className={`cellWithStatus `}>
-          {params.row.address}
+          {params.row.address||''}
         </div>
       );
     },
@@ -263,7 +263,7 @@ export const OderColumns = [
     renderCell: (params) => {
       return (
         <div className={`cellWithStatus `}>
-          {params.row.receiver}
+          {params.row.receiver||''}
         </div>
       );
     },
