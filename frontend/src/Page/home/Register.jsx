@@ -94,7 +94,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [fullname, setFullname] = useState("");
-  const [role, setRole] = useState("3");
+  // const [role, setRole] = useState("2");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -119,7 +119,6 @@ const Register = () => {
     e.preventDefault();
    ;
     const id = userState+1
-    console.log(id)
     const newUser = {
       _id:id,
       username: username,
@@ -127,7 +126,7 @@ const Register = () => {
       email,
       phone,
       fullname,
-      role,
+      role: "2",
     };
     
    registerUser(newUser, dispatch, navigate);
@@ -175,16 +174,15 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <Input placeholder="Confirm Password" type="password" />
-
+{/* 
           <select
             name="role_id"
             className="table-group-action-input form-control"
             onChange={(e) => setRole(e.target.value)}
             style={{ marginTop: "10px" }}
           >
-            <option value="3">Customer</option>
             <option value="2">Seller</option>
-          </select>
+          </select> */}
 
           <Agreement>
             By creating an account, I consent to the processing of my personal

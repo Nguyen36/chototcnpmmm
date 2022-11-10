@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import "./navbar.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -42,6 +42,7 @@ const Button = styled.button`
 
 const Navbar1 = () => {
   const user = useSelector((state) => state.auth.login.currentUser);
+  const [show,setShow] = useState(false)
   const accessToken = user?.accessToken;
   const id = user?._id;
   const dispatch = useDispatch();
@@ -49,7 +50,6 @@ const Navbar1 = () => {
   const handleLogout = () => {
     logOut(dispatch, id, navigate, accessToken);
   };
-
   const cart = useSelector((state) => state.cart.carts?.allCart);
   return (
     // {`ROLE: ${user?.role === "2" ? "seller" : "customer"}`}
@@ -86,27 +86,37 @@ const Navbar1 = () => {
 
             </Link>
             {user ? (
-              <div>
-                <Link to={`/myprofile/${user?.slug}`} 
-                style={{ textDecoration: "none" }}
-                className="text-[20px] mr-10 gap-10">
-                  {" "}
-                  My Profile
-                </Link>
-                <Link to={`/myorder/${user?.slug}`} 
-                style={{ textDecoration: "none" }}
-                className="text-[20px] ml-auto mr-10 gap-10">
-                  {" "}
-                  My Orders
-                </Link>
-                <Link
-                  to="/logout"
-                  onClick={handleLogout}
-                  className="text-[20px]  gap-10"
-                  style={{ textDecoration: "none" }}
-                >
-                  Logout
-                </Link>
+          
+              <div className="relative flex items-center" onMouseEnter={(e)=> setShow(true)} onMouseLeave={(e)=> setShow(false)}>
+                
+                <div className = "w-[24px] h-[24px]">
+                  <img src='https://i0.wp.com/thatnhucuocsong.com.vn/wp-content/uploads/2022/09/avatar-hai-1.jpg?ssl=1' className="w-full h-full rounded-full"></img>
+                </div>
+                {show && (
+
+                <div className ="w-[200px] h-auto absolute top-8 right-0 rounded-lg z-10 bg-[#e4e4e7]">
+                    <Link to={`/myprofile/${user?.slug}`} 
+                    style={{ textDecoration: "none" }}
+                    className="text-[17px] flex m-2  hover:opacity-60 rounded-lg">
+                      {" "}
+                      My Profile
+                    </Link>
+                    <Link to={`/myorder/${user?.slug}`} 
+                    style={{ textDecoration: "none" }}
+                    className="text-[17px] flex m-2  hover:opacity-60 rounded-lg">
+                      {" "}
+                      My Orders
+                    </Link>
+                    <Link
+                      to="/logout"
+                      onClick={handleLogout}
+                      className="text-[17px] flex m-2  hover:opacity-60 rounded-lg text-gray-400" 
+                      style={{ textDecoration: "none" }}
+                    >
+                      Logout
+                    </Link>
+                </div>
+                )}
               </div>
             ) : (
               <div>
