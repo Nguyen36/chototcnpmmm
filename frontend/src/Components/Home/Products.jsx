@@ -71,7 +71,7 @@ const Products = () => {
       {productList?.map((product) => (
         <ContainerItem>
           <Link to={`/product/${product?.slug}`}>
-            <Image src={product?.image} />
+            <Image src={product?.image[0]} />
           </Link>
           <Name>{product?.name}</Name>
           <Price>{formatCurrency(product?.price)}</Price>

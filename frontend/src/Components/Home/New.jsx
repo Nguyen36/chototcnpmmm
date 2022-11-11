@@ -113,7 +113,6 @@ const New = ({ title, action }) => {
     <div className="new">
       <div className="newContainer">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"/>
-
         <Tabs
           defaultActiveKey="changeAvatar"
           transition={false}

@@ -75,6 +75,11 @@ const Product = () => {
     (state) => state.product.products?.allProduct
   );
   console.log(selectedProduct);
+  const handleLoadImage=(image)=>{
+    if(image.length>0){
+      return image[0]
+    }
+  }
 
   const { slug } = useParams();
   useEffect(() => {
@@ -116,7 +121,7 @@ const Product = () => {
       <ToastContainer/>
     
       <Wrapper>
-        <Image src={selectedProduct?.image} />
+        <Image src={handleLoadImage(selectedProduct?.image)} />
         <InfoContainer>
           <Title>{selectedProduct?.name}</Title>
 

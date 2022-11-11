@@ -56,7 +56,7 @@ const New = ({ title, action }) => {
   const handleInsert = (e) => {
     e.preventDefault();
     const newProduct = {
-      _id: productState + 2,
+      _id: productState + 3,
       name,
       price,
       category_id,
