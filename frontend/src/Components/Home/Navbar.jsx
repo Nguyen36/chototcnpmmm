@@ -47,7 +47,7 @@ const Navbar1 = () => {
     <div style={{ position: "fixed", zIndex: "10", width: "100%" }}>
       <AppBar
         position="static"
-        className="bg-gradient-to-r from-pink-500 to-yellow-500"
+        style={{background:"#ffba00"}}
       >
         <Toolbar className="flex justify-between p-3">
           <div className="flex gap-4 items-center" 

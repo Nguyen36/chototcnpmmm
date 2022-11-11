@@ -133,6 +133,7 @@ const New = ({ title, action }) => {
                 <Label>Current Password</Label>
                 <Input
                   type="password"
+                  style={{border:'1px solid #000',borderRadius:'5px'}}
                   onChange={(e) => setcurrentPassword(e.target.value)}
                 />
               </ContactItem>
@@ -143,6 +144,7 @@ const New = ({ title, action }) => {
                 </ContactDiv>
                 <Label>Password</Label>
                 <Input
+                  style={{border:'1px solid #000',borderRadius:'5px'}}
                   type="password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -155,6 +157,7 @@ const New = ({ title, action }) => {
                 <Label>Confirm Password</Label>
                 <Input
                   type="password"
+                  style={{border:'1px solid #000',borderRadius:'5px'}}
                   onChange={(e) => setconfirmPassword(e.target.value)}
                 />
               </ContactItem>

@@ -1,14 +1,14 @@
-import styled from "styled-components";
-import { Tabs, Tab, Table } from "react-bootstrap";
-import Footer from "../../Components/Home/Footer";
-import Navbar from "../../Components/Home/Navbar";
-import Newsletter from "../../Components/Home/Newsletter";
-import IncDecCounter from "../../Components/Home/IncDecCounter";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { Tab, Table, Tabs } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import { get1Product, get1ProductBySlug } from "../../redux/apiProduct";
+import { toast, ToastContainer } from "react-toastify";
+import styled from "styled-components";
+import Footer from "../../Components/Home/Footer";
+import IncDecCounter from "../../Components/Home/IncDecCounter";
+import Navbar from "../../Components/Home/Navbar";
+import Newsletter from "../../Components/Home/Newsletter";
+import { get1ProductBySlug } from "../../redux/apiProduct";
 import { addToCart } from "../../redux/cart";
 
 const Container = styled.div``;
@@ -150,6 +150,10 @@ const Product = () => {
                   <tr>
                     <td>Người bán</td>
                     <td>{selectedProduct?.seller_id?.fullname}</td>
+                  </tr>
+                  <tr>
+                    <td>Số điện thoại</td>
+                    <td>{selectedProduct?.seller_id?.phone}</td>
                   </tr>
                 </tbody>
               </Table>

@@ -157,6 +157,7 @@ const Cart = () => {
  
   const user = useSelector((state) => state.auth.login?.currentUser);
   const cart = useSelector((state) => state.cart.carts?.allCart);
+  
  
   const Sum = cart?.reduce( (total, currentValue) => {
     return total + currentValue?.price*currentValue?.quantity
