@@ -93,6 +93,7 @@ const ProductDetail = styled.div`
 const Image = styled.img`
   width: 200px;
   height: 160px;
+  border-radius: 10px;
   cursor: pointer;
 `;
 
@@ -164,13 +165,18 @@ const Cart = () => {
   const Sum = cart?.reduce((total, currentValue) => {
     return total + currentValue?.price * currentValue?.quantity;
   }, 0);
-
+  const formatCurrency = (num) => {
+    if(num)
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.") + "đ";
+  };
   const handleRemove = (id, e) => {
 
     removeFormCart(id, cart, dispatch);
   };
   return (
     <Container>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"/>
+      
       <Navbar />
       <Wrapper>
         <Title>MY CART</Title>
@@ -207,12 +213,12 @@ const Cart = () => {
                           <b>Mục:</b> {product?.category_id?.name}
                         </Details>
                       </Details>
-                      <Details>{product?.price}</Details>
+                      <Details>{formatCurrency(product?.price)}</Details>
                       <Details className="px-3">
                         <IncDecCounterCart product={product} />
                       </Details>
                       <Details className="text-danger">
-                        {`${product?.price * product?.quantity}`}
+                        {`${formatCurrency(product?.price * product?.quantity)}`}
                       </Details>
                       <FontAwesomeIcon
                         onClick={(e) => handleRemove(product?._id, e)}
@@ -233,11 +239,11 @@ const Cart = () => {
           </CartProduct>
           <CartOrder>
             <CheckOut>
-              <Text>Thành tiền: {Sum}</Text>
+              <Text>Thành tiền: {formatCurrency(Sum)}</Text>
               <Hr />
               <Text>Giảm giá: </Text>
               <Hr />
-              <Text>Tổng tiền: {Sum}</Text>
+              <Text>Tổng tiền: {formatCurrency(Sum)}</Text>
               <Hr />
               <FreeShip>* Miễn phí ship toàn quốc</FreeShip>
               <ContainerButton>

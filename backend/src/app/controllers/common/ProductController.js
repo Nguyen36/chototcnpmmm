@@ -74,7 +74,6 @@ class ProductController {
             Product.init()
 
             const product = new Product(formData)
-            product._id = (Number(product._id)+2).toString()
             console.log(product._id)
             product.save()
                 .then((product) => res.status(200).json(product))
@@ -93,7 +92,7 @@ class ProductController {
     async getTop5Product(req,res,next){
        
         Product.find({})
-            .limit(4)
+            .limit(12)
             .then(product =>{
                 res.status(200).json(product);
                     
@@ -139,7 +138,7 @@ class ProductController {
 
     async getProductLength(req,res){
         await Product.find().count()
-            .then((user)=> res.status(200).json(user))
+            .then((product)=> res.status(200).json(product))
             .catch((err) =>{
                 return res.status(500).json(err);
             })
@@ -148,7 +147,7 @@ class ProductController {
     async search(req,res){
         await Product.find({ name: {$regex: req.query.q } })
 
-            .then((user)=> res.status(200).json(user))
+            .then((product)=> res.status(200).json(product))
             .catch((err) =>{
                 return res.status(500).json(err);
             })

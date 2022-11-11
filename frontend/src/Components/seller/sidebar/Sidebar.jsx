@@ -12,24 +12,24 @@ import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSyst
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 
-//import { useContext } from "react";
+//import { useContext } from "react";O
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logOut } from "../../../redux/apiRequest";
 const Sidebar = () => {
-  const user = useSelector((state)=> state.auth.login.currentUser)
+  const user = useSelector((state) => state.auth.login.currentUser);
   const accessToken = user?.accessToken;
   const id = user?._id;
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleLogout = () =>{
-    logOut(dispatch,id,navigate, accessToken);
-  }
+  const handleLogout = () => {
+    logOut(dispatch, id, navigate, accessToken);
+  };
   return (
     <div className="sidebar">
       <div className="top">
-        <Link to="/seller" style={{ textDecoration: "none" }}>
-          <span className="logo">HTPShop</span>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <span className="logo">CHOTOT</span>
         </Link>
       </div>
       <hr />
@@ -37,15 +37,13 @@ const Sidebar = () => {
         <ul>
           <p className="title">MAIN</p>
           <Link to="/seller" style={{ textDecoration: "none" }}>
-          <li>
-            <DashboardIcon className="icon" />
-            <span>Dashboard</span>
-          </li>
+            <li>
+              <DashboardIcon className="icon" />
+              <span>Dashboard</span>
+            </li>
           </Link>
           <p className="title">LISTS</p>
-          <Link to="/seller/users" style={{ textDecoration: "none" }}>
-           
-          </Link>
+          <Link to="/seller/users" style={{ textDecoration: "none" }}></Link>
           <Link to="/seller/products" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
@@ -53,42 +51,31 @@ const Sidebar = () => {
             </li>
           </Link>
           <Link to="/seller/orders" style={{ textDecoration: "none" }}>
-
-          <li>
-            <CreditCardIcon className="icon" />
-            <span>Orders</span>
-          </li>
+            <li>
+              <CreditCardIcon className="icon" />
+              <span>Orders</span>
+            </li>
           </Link>
-         
-          <p className="title">USEFUL</p>
-       
-          <li>
-            <SettingsApplicationsIcon className="icon" />
-            <span>Settings</span>
-          </li>
+
           <p className="title">USER</p>
-          <li>
-            <AccountCircleOutlinedIcon className="icon" />
-            <span>Profile</span>
-          </li>
-          
-          <Link to="/logout" onClick={handleLogout} style={{ textDecoration: "none" }}>
-          <li>
-            <ExitToAppIcon className="icon" />
-            <span>Logout</span>
-          </li>
+          <Link to={`/myprofile/${user?.slug}`}>
+            <li>
+              <AccountCircleOutlinedIcon className="icon" />
+              <span>Profile</span>
+            </li>
+          </Link>
+
+          <Link
+            to="/logout"
+            onClick={handleLogout}
+            style={{ textDecoration: "none" }}
+          >
+            <li>
+              <ExitToAppIcon className="icon" />
+              <span>Logout</span>
+            </li>
           </Link>
         </ul>
-      </div>
-      <div className="bottom">
-        <div
-          className="colorOption"
-         
-        ></div>
-        <div
-          className="colorOption"
-         
-        ></div>
       </div>
     </div>
   );

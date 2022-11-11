@@ -1,26 +1,13 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import "./navbar.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import {
-  Nav,
-  NavDropdown,
-  Navbar,
-  Form,
-  FormControl,
-  Container,
-} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import { logOut } from "../../redux/apiRequest";
+import "./navbar.scss";
 
 import {
   AppBar,
-  Toolbar,
-  CssBaseline,
-  Typography,
-  makeStyles,
+  Toolbar
 } from "@material-ui/core";
 import { ShoppingCart } from "@material-ui/icons";
 const Button = styled.button`
@@ -50,6 +37,10 @@ const Navbar1 = () => {
   const handleLogout = () => {
     logOut(dispatch, id, navigate, accessToken);
   };
+  const handleNavigate=(name)=>{
+    let url=window.location.hostname
+    return navigate(`${url}/${name}`)
+  }
   const cart = useSelector((state) => state.cart.carts?.allCart);
   return (
     // {`ROLE: ${user?.role === "2" ? "seller" : "customer"}`}
@@ -94,7 +85,7 @@ const Navbar1 = () => {
                 </div>
                 {show && (
 
-                <div className ="w-[200px] h-auto absolute top-8 right-0 rounded-lg z-10 bg-[#e4e4e7]">
+                <div className ="w-[200px] h-auto absolute top-8 right-0 rounded-lg z-10 bg-[#11101D]">
                     <Link to={`/myprofile/${user?.slug}`} 
                     style={{ textDecoration: "none" }}
                     className="text-[17px] flex m-2  hover:opacity-60 rounded-lg">
@@ -106,6 +97,11 @@ const Navbar1 = () => {
                     className="text-[17px] flex m-2  hover:opacity-60 rounded-lg">
                       {" "}
                       My Orders
+                    </Link>
+                    <Link to={`/seller`}
+                    style={{textDecoration:"none"}}
+                    className="text-[17px] flex m-2  hover:opacity-60 rounded-lg">
+                      Sell item
                     </Link>
                     <Link
                       to="/logout"
@@ -120,7 +116,7 @@ const Navbar1 = () => {
               </div>
             ) : (
               <div>
-                <Link to={`/myprofile/${user?.slug}`} className="text-[20px]">
+                <Link to={`/myprofile/${user?.slug}`} className="text-[20px] no-underline">
                   Đăng nhập
                 </Link>
               </div>

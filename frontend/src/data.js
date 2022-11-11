@@ -26,17 +26,24 @@ export const sliderItems = [
   
   export const categories = [
     {
-      id: 1,
-      img:"https://lighthouse.chotot.com/_next/image?url=https%3A%2F%2Fstatic.chotot.com%2Fstorage%2Fchapy-pro%2Fnewcats%2Fv8%2F1000.png&w=256&q=95",
-      title: "SHIRT STYLE!",
-      alt:"Bất động sản",
+      id:0,
+      img: "https://lighthouse.chotot.com/_next/image?url=https%3A%2F%2Fstatic.chotot.com%2Fstorage%2Fchapy-pro%2Fnewcats%2Fv8%2Ftat-ca-danh-muc.png&w=256&q=95",
+      title: "Tất cả danh mục",
+      alt:"Tất cả",
     },
     {
-      id: 2,
+      id: 1,
       img:"https://lighthouse.chotot.com/_next/image?url=https%3A%2F%2Fstatic.chotot.com%2Fstorage%2Fchapy-pro%2Fnewcats%2Fv8%2F2000.png&w=256&q=95",
       title: "SHIRT STYLE!",
       alt:"Xe cộ",
     },
+    {
+      id: 2,
+      img:"https://lighthouse.chotot.com/_next/image?url=https%3A%2F%2Fstatic.chotot.com%2Fstorage%2Fchapy-pro%2Fnewcats%2Fv8%2F1000.png&w=256&q=95",
+      title: "SHIRT STYLE!",
+      alt:"Bất động sản",
+    },
+    
     {
       id: 3,
       img:"https://lighthouse.chotot.com/_next/image?url=https%3A%2F%2Fstatic.chotot.com%2Fstorage%2Fchapy-pro%2Fnewcats%2Fv8%2F5000.png&w=256&q=95",

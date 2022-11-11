@@ -134,7 +134,7 @@ export const productColumns = [
       return (
         <div className="cellWithImg">
          
-          {params.row.category_id.name||'No Category'}
+          {params?.row?.category_id?.name||'No Category'}
         </div>
       );
     },

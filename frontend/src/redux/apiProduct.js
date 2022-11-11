@@ -6,6 +6,7 @@ import { createFalse, createStart, createSuccess,deleteProductFalse, deleteProdu
 
 export const createProduct = async(product,dispatch,navigate) =>{
     dispatch(createStart())
+    console.log("id:",product._id)
    try{
        
        const res= await axios.post("/product/new",product)

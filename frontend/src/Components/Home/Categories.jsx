@@ -10,11 +10,15 @@ const Categories = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+  
+
+ 
   return (
     <Slider {...settings}>
-      <div className="!flex p-5 justify-between pb-[30px] flex-row">
+     
+      <div className="!flex p-5 justify-between pb-[30px] flex-row mt-[50px]">
         {categories.map((item) => (
-          <CategoryItem item={item} key={item.id} />
+          <CategoryItem item={item} key={item.id}  />
         ))}
       </div>
     </Slider>

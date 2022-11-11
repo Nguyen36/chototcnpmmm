@@ -37,6 +37,7 @@ const Image = styled.img`
   width: 100%;
   height: 200px;
   object-fit: cover;
+  border-radius: 10px;
 `;
 
 const Products = () => {
@@ -62,6 +63,9 @@ const Products = () => {
   const handleLogin = (e) => {
     e.preventDefault();
   };
+  const formatCurrency = (num) => {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.") + "đ";
+  };
   return (
     <Container>
       {productList?.map((product) => (
@@ -70,7 +74,7 @@ const Products = () => {
             <Image src={product?.image} />
           </Link>
           <Name>{product?.name}</Name>
-          <Price>{product?.price}</Price>
+          <Price>{formatCurrency(product?.price)}</Price>
         </ContainerItem>
       ))}
     </Container>

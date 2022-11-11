@@ -111,7 +111,7 @@ class AuthController {
           httpOnly: true,
           secure:false,
           path: "/",
-          sameSite: "strict",
+          sameSite: "strict", 
         });
         res.status(200).json({
           accessToken: newAccessToken,

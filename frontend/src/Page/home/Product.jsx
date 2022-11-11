@@ -7,7 +7,7 @@ import IncDecCounter from "../../Components/Home/IncDecCounter";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { get1Product, get1ProductBySlug } from "../../redux/apiProduct";
 import { addToCart } from "../../redux/cart";
 
@@ -23,6 +23,7 @@ const Wrapper = styled.div`
 const Image = styled.img`
   width: 600px;
   height: 450px;
+  border-radius: 10px;
   object-fit: cover;
 `;
 
@@ -33,7 +34,8 @@ const InfoContainer = styled.div`
 
 const Title = styled.h2`
   font-weight: bold;
-  color: #00ff;
+  font-family: "Roboto", sans-serif;
+  color: #black !important;
 `;
 
 const Price = styled.span`
@@ -72,6 +74,7 @@ const Product = () => {
   const selectedProduct = useSelector(
     (state) => state.product.products?.allProduct
   );
+  console.log(selectedProduct);
 
   const { slug } = useParams();
   useEffect(() => {
@@ -79,7 +82,10 @@ const Product = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  const formatCurrency = (num) => {
+    if (num)
+      return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.") + "đ";
+  };
   const handleCart = (e) => {
     e.preventDefault();
 
@@ -87,26 +93,38 @@ const Product = () => {
     const quantity = element?.value;
 
     const newProduct = selectedProduct;
-   
+
     let tempProduct = Object.assign({ quantity }, newProduct);
-    console.log(cart)
+    console.log(cart);
     let cartTemp = [...cart];
-    console.log(cartTemp)
+    console.log(cartTemp);
 
     addToCart(tempProduct, cartTemp, dispatch, navigate);
-    toast.success("Success Notification !", {});
+    toast.success("Thêm giỏ hàng thành công  !", {
+      
+    });
   };
 
   return (
     <Container>
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      />
+
       <Navbar />
+      <ToastContainer/>
+    
       <Wrapper>
         <Image src={selectedProduct?.image} />
         <InfoContainer>
           <Title>{selectedProduct?.name}</Title>
+
           <Price>
             Giá từ:{" "}
-            <span className="text-danger">{selectedProduct?.price}</span> VNĐ
+            <span className="text-danger">
+              {formatCurrency(selectedProduct?.price)}
+            </span>
           </Price>
           <AddContainer>
             <IncDecCounter />
@@ -122,21 +140,21 @@ const Product = () => {
               <Table striped bordered hover>
                 <tbody>
                   <tr>
-                    <td>Loại xe</td>
+                    <td>Danh mục </td>
                     <td>{selectedProduct?.category_id?.name}</td>
                   </tr>
-                  <tr>
+                  {/* <tr>
                     <td>Hãng</td>
                     <td>{selectedProduct?.brand_id?.name}</td>
-                  </tr>
+                  </tr> */}
                   <tr>
-                    <td>Cửa hàng</td>
+                    <td>Người bán</td>
                     <td>{selectedProduct?.seller_id?.fullname}</td>
                   </tr>
                 </tbody>
               </Table>
             </Tab>
-            <Tab eventKey="description" title="Mô tả">
+            <Tab eventKey="description" title="Chi tiết">
               <div>{selectedProduct?.description}</div>
             </Tab>
           </Tabs>

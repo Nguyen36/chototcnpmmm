@@ -14,7 +14,7 @@ import SingleOder from'./Page/seller/single/SingleOder'
 
 import NewProduct from'./Page/seller/new/NewProduct'
 
-const Admin = () => {
+const Seller = () => {
   return (
     
         <Routes>
@@ -51,4 +51,4 @@ const Admin = () => {
        
   )
 }
-export default Admin;
+export default Seller;

@@ -9,8 +9,9 @@ import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Customer from "./Customer";
 import Admin from "./Admin";
 import Seller from './Seller'
-
+import { ToastContainer, toast } from 'react-toastify';
 function App() {
+
   return (
     <Router>
         <Routes>  

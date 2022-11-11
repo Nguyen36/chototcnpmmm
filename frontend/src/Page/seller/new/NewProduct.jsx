@@ -56,7 +56,7 @@ const New = ({ title, action }) => {
   const handleInsert = (e) => {
     e.preventDefault();
     const newProduct = {
-      _id: productState + 1,
+      _id: productState + 2,
       name,
       price,
       category_id,
@@ -166,6 +166,9 @@ const New = ({ title, action }) => {
                 <option value="2">Bất động sản</option>
                 <option value="3">Điện tử</option>
                 <option value="4">Nội thất</option>
+                <option value="5">Thời Trang</option>
+                <option value="6">Văn phòng</option>
+
               </select>
 
               <select
