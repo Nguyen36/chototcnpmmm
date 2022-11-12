@@ -25,9 +25,8 @@ const Home = () => {
       <div className="homeContainer">
         <Navbar />
         <div className="widgets">
-          <Widget type="order" />
+          <Widget type="TotalSold" />
           <Widget type="earning" />
-          <Widget type="balance" />
         </div>
         {/* <div className="charts">
           <Featured />

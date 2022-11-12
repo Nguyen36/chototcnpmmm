@@ -55,10 +55,8 @@ const Datatable = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New Order
-        <Link to="/admin/products/new" className="link">
-          Add New
-        </Link>
+        Đơn bán
+        
       </div>   
         <DataGrid getRowId={(row) => row._id}
         className="datagrid"

@@ -57,7 +57,7 @@ const Navbar1 = () => {
               <img
                 className="object-fill w-full h-full rounded-md"
                 alt=""
-                src="https://static.chotot.com/storage/default/transparent_logo.webp"
+                src="https://res.cloudinary.com/dddmdgm0w/image/upload/v1668259219/tiki_avatar/senki-low-resolution-logo-white-on-transparent-background_hgzk0k.png"
               ></img>
             </div>
             {/* <Typography variant="h5" classnames="select-none">
@@ -91,18 +91,18 @@ const Navbar1 = () => {
                     style={{ textDecoration: "none" }}
                     className="text-[17px] flex m-2  hover:opacity-60 rounded-lg">
                       {" "}
-                      My Profile
+                      Thông tin cá nhân
                     </Link>
                     <Link to={`/myorder/${user?.slug}`} 
                     style={{ textDecoration: "none" }}
                     className="text-[17px] flex m-2  hover:opacity-60 rounded-lg">
                       {" "}
-                      My Orders
+                      Quản lý đơn mua
                     </Link>
-                    <Link to={`/seller`}
+                    <Link to={`/seller/products/new`}
                     style={{textDecoration:"none"}}
                     className="text-[17px] flex m-2  hover:opacity-60 rounded-lg">
-                      Sell item
+                      Đăng tin
                     </Link>
                     <Link
                       to="/logout"
@@ -110,7 +110,7 @@ const Navbar1 = () => {
                       className="text-[17px] flex m-2  hover:opacity-60 rounded-lg text-gray-400" 
                       style={{ textDecoration: "none" }}
                     >
-                      Logout
+                      Đăng xuất
                     </Link>
                 </div>
                 )}

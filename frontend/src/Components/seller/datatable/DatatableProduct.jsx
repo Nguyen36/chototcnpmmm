@@ -68,9 +68,9 @@ const Datatable = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New Product
+      Tin bán đang đăng
         <Link to="/seller/products/new" className="link">
-          Add New
+          Đăng tin
         </Link>
       </div>   
         <DataGrid getRowId={(row) => row._id}

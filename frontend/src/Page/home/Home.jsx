@@ -20,7 +20,6 @@ const Home = () => {
         <Slider style={{ margin: "80px" }} />
         <Categories />
         <Products />
-        <Newsletter />
       </div>
       <Footer />
     </div>

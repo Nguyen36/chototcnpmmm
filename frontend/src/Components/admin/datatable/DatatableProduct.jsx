@@ -66,7 +66,7 @@ const Datatable = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New Product
+        Quản lý tin bán
         <Link to="/admin/products/new" className="link">
           Add New
         </Link>

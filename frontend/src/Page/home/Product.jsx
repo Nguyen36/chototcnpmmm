@@ -96,7 +96,7 @@ const Product = () => {
     e.preventDefault();
 
     const element = document.getElementById("amount");
-    const quantity = element?.value;
+    const quantity = 1;
 
     const newProduct = selectedProduct;
 
@@ -133,8 +133,7 @@ const Product = () => {
             </span>
           </Price>
           <AddContainer>
-            <IncDecCounter />
-            <Button onClick={handleCart}>ADD TO CART</Button>
+            <Button onClick={handleCart}>Thêm vào giỏ</Button>
           </AddContainer>
           <Tabs
             defaultActiveKey="information"
