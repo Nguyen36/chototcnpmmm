@@ -28,7 +28,8 @@ const Button = styled.button`
 `;
 
 const Navbar1 = () => {
-  const user = useSelector((state) => state.auth.login.currentUser);
+  const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
+  const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
   const [show,setShow] = useState(false)
   const accessToken = user?.accessToken;
   const id = user?._id;
@@ -76,7 +77,7 @@ const Navbar1 = () => {
               Giỏ hàng
 
             </Link>
-            {user ? (
+            {user.username ? (
           
               <div className="relative flex items-center" onMouseEnter={(e)=> setShow(true)} onMouseLeave={(e)=> setShow(false)}>
                 
@@ -116,7 +117,7 @@ const Navbar1 = () => {
               </div>
             ) : (
               <div>
-                <Link to={`/myprofile/${user?.slug}`} className="text-[20px] no-underline">
+                <Link to={`/login`} className="text-[20px] no-underline">
                   Đăng nhập
                 </Link>
               </div>

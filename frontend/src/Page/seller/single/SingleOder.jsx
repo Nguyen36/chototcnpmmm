@@ -18,7 +18,8 @@ const Single = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const user = useSelector((state) => state.auth.login?.currentUser)
+  const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
+  const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
   const selectedOder = useSelector((state) => state.oder.full?.detail)
   
   const {orderId} = useParams()

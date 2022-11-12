@@ -17,7 +17,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logOut } from "../../../redux/apiRequest";
 const Sidebar = () => {
-  const user = useSelector((state)=> state.auth.login.currentUser)
+  const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
+  const user = useSelector((state)=> state.auth.login.currentUser) || UserToken
   const accessToken = user?.accessToken;
   const id = user?._id;
   const dispatch = useDispatch();

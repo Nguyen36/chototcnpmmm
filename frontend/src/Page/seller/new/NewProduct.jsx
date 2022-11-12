@@ -18,7 +18,8 @@ const New = ({ title, action }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const user = useSelector((state) => state.auth.login?.currentUser);
+  const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
+  const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
 
   const selectedUser = useSelector(
     (state) => state.product.products?.allProduct
@@ -55,12 +56,16 @@ const New = ({ title, action }) => {
 
   const handleInsert = (e) => {
     e.preventDefault();
+    let images = []
+    for(let i = 0; i < file.length; i++){
+      images.push(file[i].base64)
+    }
     const newProduct = {
       _id: productState + 3,
       name,
       price,
       category_id,
-      image: file,
+      image: images,
       amount,
       brand_id,
       seller_id: user._id,
@@ -97,10 +102,10 @@ const New = ({ title, action }) => {
                 </label>
                 <FileBase64
                   accept='image/*'
-                  multiple={false}
+                  multiple={true}
                   type='file'
                   
-                  onDone={({ base64 }) => setFile(base64)}
+                  onDone={(e) => setFile(e)}
                 />
                 {/* <input
                   type="file"

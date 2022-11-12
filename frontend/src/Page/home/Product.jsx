@@ -69,14 +69,15 @@ const Product = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const user = useSelector((state) => state.auth.login?.currentUser);
+  const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
+  const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
   const cart = useSelector((state) => state.cart.carts?.allCart);
   const selectedProduct = useSelector(
     (state) => state.product.products?.allProduct
   );
   console.log(selectedProduct);
   const handleLoadImage=(image)=>{
-    if(image.length>0){
+    if(image && image.length > 0){
       return image[0]
     }
   }

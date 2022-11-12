@@ -8,7 +8,7 @@ import List from "../../../Components/admin/table/Table";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { get1, getAllUsers, getOneUser } from "../../../redux/apiRequest";
+import { get1  } from "../../../redux/apiRequest";
 
 
 
@@ -17,7 +17,8 @@ const Single = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const user = useSelector((state) => state.auth.login?.currentUser)
+  const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
+  const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
   const selectedUser = useSelector((state) => state.user.users?.allUsers)
   const {userId} = useParams()
  // console.log(userId)

@@ -8,7 +8,8 @@ export const loginUser = async(user,dispatch,navigate) =>{
     try{
        
         const res= await axios.post("/login",user)
-        const data =res.data
+        localStorage.setItem('userInfo',JSON.stringify(res.data))
+        const data =res.data    
         if(data.verify)
             {dispatch(loginSuccess(res.data))
             const role =res.data.role
@@ -123,6 +124,7 @@ export const deleteUser = async(accessToken,dispatch,id) =>{
  export const logOut = async (dispatch, id, navigate, accessToken) => {
     dispatch(logOutStart());
     try {
+        localStorage.removeItem('userInfo')
       await axios.post("/login/logout", id, {
         headers: { token: `Bearer ${accessToken}` },
       });

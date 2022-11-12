@@ -11,7 +11,8 @@ const New = ({  title,action }) => {
   const dispatch= useDispatch();
   const navigate= useNavigate();
 
-  const user = useSelector((state) => state.auth.login?.currentUser)
+  const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
+  const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
   const selectedUser = useSelector((state) => state.user.users?.allUsers)
   const [file, setFile] = useState(selectedUser?.image);
 

@@ -12,7 +12,8 @@ const Datatable = () => {
   const navigate = useNavigate()
 
   // lay ra User
-  const user = useSelector((state) => state.auth.login?.currentUser)
+  const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
+  const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
  
   const productList = useSelector((state)=> state.product.products?.allProduct)
   const [data, setData] = useState(productList);
