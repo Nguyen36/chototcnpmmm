@@ -16,7 +16,9 @@ function CategoryItem({ item }) {
   }
  
   return (
-    <div className="pl-[50px] pr-[50px] container" onClick={e=>handleOnClick(e,item.id)}
+    <div className="pl-[50px] pr-[50px] container w-[20%] 
+    mr-[-80px]
+    mt-[50px]" onClick={e=>handleOnClick(e,item.id)}
    >
       <div className="w-auto h-auto mw-100 mh-100 ">
         <img src={item.img} alt="" className="" />

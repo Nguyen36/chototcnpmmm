@@ -1,10 +1,10 @@
-import styled from "styled-components";
+import { } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import {} from "react-bootstrap";
+import styled from "styled-components";
 
 import { useState } from "react";
-import { direct, loginUser } from "../../redux/apiRequest";
+import { loginUser } from "../../redux/apiRequest";
 
 const Container = styled.div`
   width: 100vw;

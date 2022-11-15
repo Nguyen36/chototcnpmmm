@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { logOut } from "../../redux/apiRequest";
 import "./navbar.scss";
+import Form from 'react-bootstrap/Form';
 
 import {
   AppBar,
@@ -26,9 +27,21 @@ const Button = styled.button`
   border: 1px solid transparent;
   text-transform: uppercase;
 `;
-
+const SearchContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+`;
 const Navbar1 = () => {
-  const user = useSelector((state) => state.auth.login.currentUser);
+  const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
+  const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
   const [show,setShow] = useState(false)
   const accessToken = user?.accessToken;
   const id = user?._id;
@@ -47,22 +60,24 @@ const Navbar1 = () => {
     <div style={{ position: "fixed", zIndex: "10", width: "100%" }}>
       <AppBar
         position="static"
-        className="bg-gradient-to-r from-pink-500 to-yellow-500"
+        style={{background:"#ffba00"}}
       >
         <Toolbar className="flex justify-between p-3">
+         
           <div className="flex gap-4 items-center" 
           style={{marginLeft:40,textDecoration:"none"}}>
             <div className="w-[100px] h[100px] ">
               <img
                 className="object-fill w-full h-full rounded-md"
                 alt=""
-                src="https://static.chotot.com/storage/default/transparent_logo.webp"
+                src="https://res.cloudinary.com/dddmdgm0w/image/upload/v1668259219/tiki_avatar/senki-low-resolution-logo-white-on-transparent-background_hgzk0k.png"
               ></img>
             </div>
             {/* <Typography variant="h5" classnames="select-none">
               Chợ tốt
             </Typography> */}
           </div>
+        
           <div className="ml-[20px] flex justify-between gap-10" 
           style={{marginRight:100
           }}>
@@ -76,7 +91,7 @@ const Navbar1 = () => {
               Giỏ hàng
 
             </Link>
-            {user ? (
+            {user.username ? (
           
               <div className="relative flex items-center" onMouseEnter={(e)=> setShow(true)} onMouseLeave={(e)=> setShow(false)}>
                 
@@ -90,18 +105,18 @@ const Navbar1 = () => {
                     style={{ textDecoration: "none" }}
                     className="text-[17px] flex m-2  hover:opacity-60 rounded-lg">
                       {" "}
-                      My Profile
+                      Thông tin cá nhân
                     </Link>
                     <Link to={`/myorder/${user?.slug}`} 
                     style={{ textDecoration: "none" }}
                     className="text-[17px] flex m-2  hover:opacity-60 rounded-lg">
                       {" "}
-                      My Orders
+                      Quản lý đơn mua
                     </Link>
-                    <Link to={`/seller`}
+                    <Link to={`/seller/products/new`}
                     style={{textDecoration:"none"}}
                     className="text-[17px] flex m-2  hover:opacity-60 rounded-lg">
-                      Sell item
+                      Đăng tin
                     </Link>
                     <Link
                       to="/logout"
@@ -109,14 +124,14 @@ const Navbar1 = () => {
                       className="text-[17px] flex m-2  hover:opacity-60 rounded-lg text-gray-400" 
                       style={{ textDecoration: "none" }}
                     >
-                      Logout
+                      Đăng xuất
                     </Link>
                 </div>
                 )}
               </div>
             ) : (
               <div>
-                <Link to={`/myprofile/${user?.slug}`} className="text-[20px] no-underline">
+                <Link to={`/login`} className="text-[20px] no-underline">
                   Đăng nhập
                 </Link>
               </div>

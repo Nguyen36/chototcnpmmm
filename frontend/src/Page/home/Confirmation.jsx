@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelopeOpenText } from "@fortawesome/free-solid-svg-icons";
 
 import { useState } from "react";
-import { direct, loginUser } from "../../redux/apiRequest";
+import {  loginUser } from "../../redux/apiRequest";
 
 const Container = styled.div`
   width: 100vw;

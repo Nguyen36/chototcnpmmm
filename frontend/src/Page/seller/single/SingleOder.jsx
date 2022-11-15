@@ -18,7 +18,8 @@ const Single = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const user = useSelector((state) => state.auth.login?.currentUser)
+  const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
+  const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
   const selectedOder = useSelector((state) => state.oder.full?.detail)
   
   const {orderId} = useParams()
@@ -57,7 +58,7 @@ const Single = () => {
             <h1 className="title">Information Customer</h1>
             <div className="item">
               <img
-                src={selectedOder[0]?.oder_id.customer_id.image}
+                src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png"
                 alt=""
                 className="itemImg"
               />
@@ -89,7 +90,7 @@ const Single = () => {
             <h1 className="title">Information Order </h1>
             <div className="item">
               <img
-                src={selectedOder?.image}
+                src='https://c8.alamy.com/comp/2ANK9RP/order-receipt-flat-icon-2ANK9RP.jpg'
                 alt=""
                 className="itemImg"
               />
@@ -113,7 +114,8 @@ const Single = () => {
                 
                 </div>
                 <br/>
-                <h1 className="itemTitle">Total: {plus} VNĐ</h1>
+                <h1 className="itemTitle"
+                style={{fontWeight:'bolder'}}>Total: {plus} VNĐ</h1>
               </div>
             </div>
           </div>

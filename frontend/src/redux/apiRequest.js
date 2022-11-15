@@ -8,7 +8,8 @@ export const loginUser = async(user,dispatch,navigate) =>{
     try{
        
         const res= await axios.post("/login",user)
-        const data =res.data
+        localStorage.setItem('userInfo',JSON.stringify(res.data))
+        const data =res.data    
         if(data.verify)
             {dispatch(loginSuccess(res.data))
             const role =res.data.role
@@ -59,7 +60,7 @@ export const editUser = async(user,dispatch,navigate,id,accessToken) =>{
        console.log(accessToken)
        const res= await axios.put(`/user/edit/${id}`,user,{
         headers: {token: `Bearer ${accessToken}`},})
-        console.log(res)
+        console.log(accessToken)
        dispatch(editUserSuccess(res.data))
         //navigate('/login')
        
@@ -123,6 +124,7 @@ export const deleteUser = async(accessToken,dispatch,id) =>{
  export const logOut = async (dispatch, id, navigate, accessToken) => {
     dispatch(logOutStart());
     try {
+        localStorage.removeItem('userInfo')
       await axios.post("/login/logout", id, {
         headers: { token: `Bearer ${accessToken}` },
       });
