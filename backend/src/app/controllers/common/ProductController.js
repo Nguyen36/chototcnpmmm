@@ -147,6 +147,19 @@ class ProductController {
         return res.status(500).json(err);
       });
   }
+
+  async searchByName(req, res) {
+    try {
+        const name = req.body.name;
+        await Product.find({ name: { $regex: name } })
+        .then((product) => res.status(200).json(product))
+        .catch((err) => {
+            return res.status(500).json(err);
+        });
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+  }
 }
 
 module.exports = new ProductController();
