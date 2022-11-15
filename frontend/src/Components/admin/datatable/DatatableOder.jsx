@@ -13,8 +13,7 @@ const Datatable = () => {
   const navigate = useNavigate()
 
   // lay ra User
-  const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
-  const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
+  const user = useSelector((state) => state.auth.login?.currentUser)
  
   const oderList = useSelector((state)=> state.oder.oders?.allOder)
   const [data, setData] = useState(oderList);

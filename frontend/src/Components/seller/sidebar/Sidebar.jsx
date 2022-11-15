@@ -17,8 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logOut } from "../../../redux/apiRequest";
 const Sidebar = () => {
-  const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
-  const user = useSelector((state) => state.auth.login.currentUser) || UserToken
+  const user = useSelector((state) => state.auth.login.currentUser);
   const accessToken = user?.accessToken;
   const id = user?._id;
   const dispatch = useDispatch();
@@ -30,7 +29,7 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">SENKI</span>
+          <span className="logo">CHOTOT</span>
         </Link>
       </div>
       <hr />
@@ -48,13 +47,13 @@ const Sidebar = () => {
           <Link to="/seller/products" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
-              <span>Mặt hàng đăng bán</span>
+              <span>Products</span>
             </li>
           </Link>
           <Link to="/seller/orders" style={{ textDecoration: "none" }}>
             <li>
               <CreditCardIcon className="icon" />
-              <span>Đơn bán</span>
+              <span>Orders</span>
             </li>
           </Link>
 
@@ -62,7 +61,7 @@ const Sidebar = () => {
           <Link to={`/myprofile/${user?.slug}`}>
             <li>
               <AccountCircleOutlinedIcon className="icon" />
-              <span>Thông tin cá nhân</span>
+              <span>Profile</span>
             </li>
           </Link>
 
@@ -73,7 +72,7 @@ const Sidebar = () => {
           >
             <li>
               <ExitToAppIcon className="icon" />
-              <span>Đăng xuất</span>
+              <span>Logout</span>
             </li>
           </Link>
         </ul>

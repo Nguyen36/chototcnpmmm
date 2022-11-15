@@ -129,8 +129,7 @@ const CheckOut = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
-  const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
+  const user = useSelector((state) => state.auth.login?.currentUser);
   console.log(user);
   const cart = useSelector((state) => state.cart.carts?.allCart);
 

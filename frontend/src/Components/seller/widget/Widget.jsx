@@ -4,29 +4,12 @@ import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
-import {useSelector} from 'react-redux'
-import { useState } from "react";
+
 const Widget = ({ type }) => {
-
   let data;
-const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
-  const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
- 
-  const countOrder = useSelector((state)=> {
-    if(state.oder.oders?.allOder){
-      return state.oder.oders?.allOder.length
-    }
-    else{
-      return 0
-    }
-  })
-  const total= useSelector((state)=> state.oder.oders?.allOder)
 
-  console.log(total)
-  console.log(countOrder)
-  const [count, setCount] = useState(0);
   //temporary
-  let amount = count
+  const amount = 100;
   const diff = 20;
 
   switch (type) {
@@ -46,10 +29,9 @@ const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
         ),
       };
       break;
-    case "TotalSold":
-      amount = countOrder;
+    case "order":
       data = {
-        title: "Tổng số đơn bán",
+        title: "ORDERS",
         isMoney: false,
         link: "View all orders",
         icon: (
@@ -65,7 +47,7 @@ const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
       break;
     case "earning":
       data = {
-        title: "Doanh thu",
+        title: "EARNINGS",
         isMoney: true,
         link: "View net earnings",
         icon: (

@@ -136,8 +136,7 @@ const Register = () => {
      email:email,
      link:link,
    }
-   console.log(templateParams)
-    emailjs.send('service_teaqo9w', 'template_tarp2o3', templateParams ,'ThHVCv99MnfkPNCzf')
+    emailjs.send('gmail', 'template_6raebna', templateParams ,'tw8k9azpbiT_vhsV4')
     .then(function(response) {
         console.log('SUCCESS!', response.status, response.text);
     }, function(error) {

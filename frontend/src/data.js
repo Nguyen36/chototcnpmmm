@@ -39,9 +39,9 @@ export const sliderItems = [
     },
     {
       id: 2,
-      img:"https://lighthouse.chotot.com/_next/image?url=https%3A%2F%2Fstatic.chotot.com%2Fstorage%2Fchapy-pro%2Fnewcats%2Fv8%2F12000.png&w=256&q=95",
-      title: "Thú cưng!",
-      alt:"Thú cưng",
+      img:"https://lighthouse.chotot.com/_next/image?url=https%3A%2F%2Fstatic.chotot.com%2Fstorage%2Fchapy-pro%2Fnewcats%2Fv8%2F1000.png&w=256&q=95",
+      title: "SHIRT STYLE!",
+      alt:"Bất động sản",
     },
     
     {
@@ -64,8 +64,12 @@ export const sliderItems = [
       alt:"Thời trang"
       
     },
-   
-    
+    {
+      id: 6,
+      img:"https://lighthouse.chotot.com/_next/image?url=https%3A%2F%2Fstatic.chotot.com%2Fstorage%2Fchapy-pro%2Fnewcats%2Fv8%2F8000.png&w=256&q=95",
+      title:"Văn phòng",
+      alt:"Văn phòng"
+    }
     
    
     

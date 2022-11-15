@@ -11,7 +11,7 @@ const Container = styled.div`
   padding: 20px 150px;
   display: flex;
   flex-wrap: wrap;
-  align-items: start;
+  justify-content: space-between;
   box-sizing: border-box;
 `;
 
@@ -44,6 +44,7 @@ const Products = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const user = useSelector((state) => state.auth.login?.currentUser);
   const productList = useSelector((state) => state.product.one?.product);
 
   // const selectedProduct = useSelector(
@@ -70,7 +71,7 @@ const Products = () => {
       {productList?.map((product) => (
         <ContainerItem>
           <Link to={`/product/${product?.slug}`}>
-            <Image src={product?.image[0]} />
+            <Image src={product?.image} />
           </Link>
           <Name>{product?.name}</Name>
           <Price>{formatCurrency(product?.price)}</Price>

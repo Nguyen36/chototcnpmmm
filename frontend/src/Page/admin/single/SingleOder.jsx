@@ -8,7 +8,7 @@ import List from "../../../Components/admin/table/Table";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { get1 } from "../../../redux/apiRequest";
+import { get1, getAllUsers, getOneUser } from "../../../redux/apiRequest";
 import { editOder, getFull } from "../../../redux/apiOder";
 
 
@@ -18,8 +18,7 @@ const Single = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
-  const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
+  const user = useSelector((state) => state.auth.login?.currentUser)
   const selectedOder = useSelector((state) => state.oder.full?.detail)
   const {orderId} = useParams()
 

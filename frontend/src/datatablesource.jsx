@@ -78,10 +78,6 @@ export const userColumns = [
     },
   },
 ];
-const formatCurrency = (num) => {
-  if (num)
-  return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.") ;
-};
 const a = (role)=>{
   if(role ==='3')
   return 'Customer'
@@ -90,7 +86,6 @@ const a = (role)=>{
   else 
     return 'Admin'
 }
-
 
 export const productColumns = [
   { field: "_id", headerName: "ID", width: 50 ,
@@ -110,7 +105,7 @@ export const productColumns = [
     renderCell: (params) => {
       return (
         <div className="cellWithImg">
-          <img className="cellImg2" src={params.row.image[0]} alt="avatar" />
+          <img className="cellImg2" src={params.row.image} alt="avatar" />
           {params.row.name}
         </div>
       );
@@ -124,7 +119,7 @@ export const productColumns = [
       return (
         <div className="cellWithImg">
          
-          {formatCurrency(params.row.price)}
+          {params.row.price}
         </div>
       );
     },
@@ -156,18 +151,18 @@ export const productColumns = [
   //     );
   //   },
   // },
-  // {
-  //   field: "amount",
-  //   headerName: "Amount",
-  //   width: 80,
-  //   renderCell: (params) => {
-  //     return (
-  //       <div className={`cellWithStatus `}>
-  //         {params.row.amount||''}
-  //       </div>
-  //     );
-  //   },
-  // },
+  {
+    field: "amount",
+    headerName: "Amount",
+    width: 80,
+    renderCell: (params) => {
+      return (
+        <div className={`cellWithStatus `}>
+          {params.row.amount||''}
+        </div>
+      );
+    },
+  },
   {
     field: "seller",
     headerName: "Seller",

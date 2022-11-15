@@ -119,14 +119,14 @@ const Footer = () => {
       <Left>
         <Logo>
           <img
-            src="https://res.cloudinary.com/dddmdgm0w/image/upload/v1668259219/tiki_avatar/senki-low-resolution-logo-white-on-transparent-background_hgzk0k.png"
+            src="https://static.chotot.com/storage/default/transparent_logo.webp"
             style={{ height: "50px" }}
             alt=""
           />
         </Logo>
         <Desc>
           Chuyên trang hoạt động trao đổi hàng hoá số 1 VN <br /> <br />
-          Senki luôn cam kết phục vụ với chất lượng tốt nhất dành cho khách hàng.
+          Chợ tốt luôn cam kết phục vụ với chất lượng tốt nhất dành cho khách hàng.
         </Desc>
         <SocialContainer>
           <Icon color="3B5999">

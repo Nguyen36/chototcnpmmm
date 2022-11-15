@@ -14,9 +14,9 @@ const Categories = () => {
 
  
   return (
-    <Slider {...settings} className="" >     
-      <div className="!flex p-5 justify-center pb-[30px] flex-row mt-[50px]
-      flex-wrap">
+    <Slider {...settings}>
+     
+      <div className="!flex p-5 justify-between pb-[30px] flex-row mt-[50px]">
         {categories.map((item) => (
           <CategoryItem item={item} key={item.id}  />
         ))}
