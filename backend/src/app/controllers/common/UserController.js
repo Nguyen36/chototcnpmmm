@@ -46,8 +46,10 @@ class UserController {
         if(formData.password){
             formData.password = await bcrypt.hash(formData.password, salt);
         }
+        console.log(formData);
+        console.log(req.params.id);
 
-        await  User.updateOne({id: req.params.id},formData)
+        await  User.updateOne({_id: req.params.id},formData)
             .then(() => {
                 res.status(200).json('Updated Success')
             })
