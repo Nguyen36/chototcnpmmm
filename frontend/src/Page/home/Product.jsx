@@ -1,14 +1,14 @@
-import { useEffect } from "react";
-import { Tab, Table, Tabs } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
 import styled from "styled-components";
+import { Tabs, Tab, Table } from "react-bootstrap";
 import Footer from "../../Components/Home/Footer";
-import IncDecCounter from "../../Components/Home/IncDecCounter";
 import Navbar from "../../Components/Home/Navbar";
 import Newsletter from "../../Components/Home/Newsletter";
-import { get1ProductBySlug } from "../../redux/apiProduct";
+import IncDecCounter from "../../Components/Home/IncDecCounter";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import { get1Product, get1ProductBySlug } from "../../redux/apiProduct";
 import { addToCart } from "../../redux/cart";
 
 const Container = styled.div``;
@@ -69,18 +69,12 @@ const Product = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
-  const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
+  const user = useSelector((state) => state.auth.login?.currentUser);
   const cart = useSelector((state) => state.cart.carts?.allCart);
   const selectedProduct = useSelector(
     (state) => state.product.products?.allProduct
   );
   console.log(selectedProduct);
-  const handleLoadImage=(image)=>{
-    if(image && image.length > 0){
-      return image[0]
-    }
-  }
 
   const { slug } = useParams();
   useEffect(() => {
@@ -96,7 +90,7 @@ const Product = () => {
     e.preventDefault();
 
     const element = document.getElementById("amount");
-    const quantity = 1;
+    const quantity = element?.value;
 
     const newProduct = selectedProduct;
 
@@ -122,7 +116,7 @@ const Product = () => {
       <ToastContainer/>
     
       <Wrapper>
-        <Image src={handleLoadImage(selectedProduct?.image)} />
+        <Image src={selectedProduct?.image} />
         <InfoContainer>
           <Title>{selectedProduct?.name}</Title>
 
@@ -133,7 +127,8 @@ const Product = () => {
             </span>
           </Price>
           <AddContainer>
-            <Button onClick={handleCart}>Thêm vào giỏ</Button>
+            <IncDecCounter />
+            <Button onClick={handleCart}>ADD TO CART</Button>
           </AddContainer>
           <Tabs
             defaultActiveKey="information"
@@ -155,10 +150,6 @@ const Product = () => {
                   <tr>
                     <td>Người bán</td>
                     <td>{selectedProduct?.seller_id?.fullname}</td>
-                  </tr>
-                  <tr>
-                    <td>Số điện thoại</td>
-                    <td>{selectedProduct?.seller_id?.phone}</td>
                   </tr>
                 </tbody>
               </Table>

@@ -11,11 +11,14 @@ import { useSelector } from "react-redux";
 //import { useContext } from "react";
 
 const Navbar = () => {
-  const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
-  const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
+  const user = useSelector ((state) => state.auth.login?.currentUser)
   return (
     <div className="navbar">
       <div className="wrapper">
+        <div className="search">
+          <input type="text" placeholder="Search..." />
+          <SearchOutlinedIcon />
+        </div>
         <div className="items">
           <div className="item">
             <LanguageOutlinedIcon className="icon" />

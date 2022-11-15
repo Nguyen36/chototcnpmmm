@@ -14,7 +14,6 @@ const Image = styled.img`
   object-position: center;
 `;
 
-
 const Slider2 = () => {
   var settings = {
     dots: true,

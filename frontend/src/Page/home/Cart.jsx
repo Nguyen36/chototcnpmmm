@@ -158,8 +158,7 @@ const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
-  const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
+  const user = useSelector((state) => state.auth.login?.currentUser);
   console.log(user);
   let cart = useSelector((state) => state.cart.carts?.allCart);
 

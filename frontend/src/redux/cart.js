@@ -17,7 +17,7 @@ export const addToCart = async(product,cart,dispatch,navigate) =>{
              
             if( product?._id === element?._id)
             {
-              const number= parseInt(product?.quantity)
+              const number= parseInt(product?.quantity)+parseInt(element.quantity)
               const quantity = number.toString() 
         
                const temp = Object.assign({}, product , {'quantity':quantity});         

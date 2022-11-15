@@ -13,8 +13,7 @@ import "./home.scss";
 const Home = () => {
   const navigate = useNavigate();
 
-  const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
-  const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
+  const user = useSelector((state) => state.auth.login?.currentUser);
 
   // const notify = () => {
 

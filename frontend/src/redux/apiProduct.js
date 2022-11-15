@@ -85,17 +85,6 @@ export const getProductSearch = async(dispatch) =>{
     }
  }
 
- export const getProductSearchByName = async(dispatch, name) =>{
-    dispatch(getProductStart())
-   try{
-        let data = {"name": name}
-       const res= await axios.post("/product/searchbyname", data)
-       dispatch(getProductSuccess(res.data))
-   }catch(err){
-       dispatch(getProductFalse())
-   }
- }
-
 
 export const getTop5Product = async(dispatch) =>{
     dispatch(get1ProductStart())

@@ -36,7 +36,6 @@ function IncDecCounter(product) {
               class="btn btn-outline-primary"
               type="button"
               onClick={decNum}
-              hidden
             >
               -
             </button>
@@ -46,8 +45,7 @@ function IncDecCounter(product) {
             type="text"
             class="form-control"
             value={num}
-            style={{ textAlign: "center"}}
-            disabled
+            style={{ textAlign: "center" }}
             onChange={handleChange}
           />
           <div class="input-group-prepend">
@@ -55,7 +53,6 @@ function IncDecCounter(product) {
               class="btn btn-outline-primary"
               type="button"
               onClick={incNum}
-              hidden
             >
               +
             </button>
