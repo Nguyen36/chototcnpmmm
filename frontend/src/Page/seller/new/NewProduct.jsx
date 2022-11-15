@@ -33,6 +33,7 @@ const New = ({ title, action }) => {
   const [description, setDescription] = useState(selectedUser?.description);
   const [status, setStatus] = useState(selectedUser?.status);
   const [productState, setProductState] = useState();
+  const [id,setId]=useState()
   const { productid } = useParams();
   const handleImage=(img)=>{
     if(img){
@@ -43,6 +44,10 @@ const New = ({ title, action }) => {
     try {
       const res = await axios.get("/product/getLength");
       setProductState(res.data);
+      let t=res.data.map((item) => item._id);
+      t=Number.parseInt(t)+1
+      setId(t.toString())
+      console.log(id)
     } catch (err) {
       return err;
     }
@@ -65,7 +70,7 @@ const New = ({ title, action }) => {
       images.push(file[i].base64)
     }
     const newProduct = {
-      _id: productState + 3,
+      _id: id,
       name,
       price,
       category_id,
@@ -105,7 +110,7 @@ const New = ({ title, action }) => {
             <form onSubmit={handleInsert}>
               <div className="formInput">
                 <label htmlFor="file">
-                  Image: <DriveFolderUploadOutlinedIcon className="icon" />
+                  Hình ảnh: <DriveFolderUploadOutlinedIcon className="icon" />
                 </label>
                 <FileBase64
                   accept='image/*'
@@ -123,7 +128,7 @@ const New = ({ title, action }) => {
               </div>
 
               <div className="formInput">
-                <label>Name</label>
+                <label>Tên sản phẩm</label>
                 <input
                   type="text"
                   placeholder={selectedUser?.name}
@@ -131,7 +136,7 @@ const New = ({ title, action }) => {
                 />
               </div>
               <div className="formInput">
-                <label>Price</label>
+                <label>Giá</label>
                 <input
                   type="text"
                   placeholder={selectedUser?.price}
@@ -142,7 +147,7 @@ const New = ({ title, action }) => {
               
 
               <div className="formInput">
-                <label>Description</label>
+                <label>Mô tả</label>
                 <input
                   type="text"
                   onChange={(e) => setDescription(e.target.value)}
@@ -178,7 +183,7 @@ const New = ({ title, action }) => {
                 <option value="Unpublished">Unpublished</option>
               </select>
 
-              <button type="submit">Send</button>
+              <button style={{borderRadius:'10px'}} type="submit">Send</button>
             </form>
           </div>
         </div>

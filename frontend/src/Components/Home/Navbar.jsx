@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { logOut } from "../../redux/apiRequest";
 import "./navbar.scss";
+import Form from 'react-bootstrap/Form';
 
 import {
   AppBar,
@@ -26,7 +27,18 @@ const Button = styled.button`
   border: 1px solid transparent;
   text-transform: uppercase;
 `;
-
+const SearchContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+`;
 const Navbar1 = () => {
   const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
   const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
@@ -51,6 +63,7 @@ const Navbar1 = () => {
         style={{background:"#ffba00"}}
       >
         <Toolbar className="flex justify-between p-3">
+         
           <div className="flex gap-4 items-center" 
           style={{marginLeft:40,textDecoration:"none"}}>
             <div className="w-[100px] h[100px] ">
@@ -64,6 +77,7 @@ const Navbar1 = () => {
               Chợ tốt
             </Typography> */}
           </div>
+        
           <div className="ml-[20px] flex justify-between gap-10" 
           style={{marginRight:100
           }}>

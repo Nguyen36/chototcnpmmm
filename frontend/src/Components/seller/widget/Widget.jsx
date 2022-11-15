@@ -12,7 +12,14 @@ const Widget = ({ type }) => {
 const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
   const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
  
-  const countOrder = useSelector((state)=> state.oder.oders?.allOder.length)
+  const countOrder = useSelector((state)=> {
+    if(state.oder.oders?.allOder){
+      return state.oder.oders?.allOder.length
+    }
+    else{
+      return 0
+    }
+  })
   const total= useSelector((state)=> state.oder.oders?.allOder)
 
   console.log(total)
