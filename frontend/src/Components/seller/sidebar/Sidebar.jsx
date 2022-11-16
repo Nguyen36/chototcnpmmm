@@ -30,7 +30,7 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">CHOTOT</span>
+          <span className="logo">SENKI</span>
         </Link>
       </div>
       <hr />
@@ -48,13 +48,13 @@ const Sidebar = () => {
           <Link to="/seller/products" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
-              <span>Products</span>
+              <span>Mặt hàng đăng bán</span>
             </li>
           </Link>
           <Link to="/seller/orders" style={{ textDecoration: "none" }}>
             <li>
               <CreditCardIcon className="icon" />
-              <span>Orders</span>
+              <span>Đơn bán</span>
             </li>
           </Link>
 
@@ -62,7 +62,7 @@ const Sidebar = () => {
           <Link to={`/myprofile/${user?.slug}`}>
             <li>
               <AccountCircleOutlinedIcon className="icon" />
-              <span>Profile</span>
+              <span>Thông tin cá nhân</span>
             </li>
           </Link>
 
@@ -73,7 +73,7 @@ const Sidebar = () => {
           >
             <li>
               <ExitToAppIcon className="icon" />
-              <span>Logout</span>
+              <span>Đăng xuất</span>
             </li>
           </Link>
         </ul>

@@ -11,7 +11,7 @@ const Container = styled.div`
   padding: 20px 150px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  align-items: start;
   box-sizing: border-box;
 `;
 

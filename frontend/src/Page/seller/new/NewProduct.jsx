@@ -25,7 +25,6 @@ const New = ({ title, action }) => {
     (state) => state.product.products?.allProduct
   );
   const [file, setFile] = useState(selectedUser?.image);
-
   const [name, setName] = useState(selectedUser?.name);
   const [price, setPrice] = useState(selectedUser?.price);
   const [category_id, setCategory] = useState(selectedUser?.category_id||"1");
@@ -34,11 +33,21 @@ const New = ({ title, action }) => {
   const [description, setDescription] = useState(selectedUser?.description);
   const [status, setStatus] = useState(selectedUser?.status);
   const [productState, setProductState] = useState();
+  const [id,setId]=useState()
   const { productid } = useParams();
+  const handleImage=(img)=>{
+    if(img){
+      return img[0].base64
+    }
+  }
   const getLengthProduct = async () => {
     try {
       const res = await axios.get("/product/getLength");
       setProductState(res.data);
+      let t=res.data.map((item) => item._id);
+      t=Number.parseInt(t)+1
+      setId(t.toString())
+      console.log(id)
     } catch (err) {
       return err;
     }
@@ -61,12 +70,12 @@ const New = ({ title, action }) => {
       images.push(file[i].base64)
     }
     const newProduct = {
-      _id: productState + 3,
+      _id: id,
       name,
       price,
       category_id,
       image: images,
-      amount,
+      amount: 1,
       brand_id,
       seller_id: user._id,
       status,
@@ -80,25 +89,28 @@ const New = ({ title, action }) => {
       <div className="newContainer">
         <Navbar />
         <div className="top">
-          <h1>{title}</h1>
+          <h1 style={{color:'black'}}>Đăng tin</h1>
         </div>
         <div className="bottom">
-          <div className="left">
-            {/* <img
-              src={file ? URL.createObjectURL(file) : `${selectedUser?.image}`}
+          <div className="left flex justify-center content-center	 ">
+            <img 
+            className="mt-[10%]"
+              src={handleImage(file)}
+              style={{ width: "200px", height: "200px" ,borderRadius:'10px !important',
+            objectFit:'cover'}}
               alt=""
-            /> */}
-            <CardMedia
-              image={file || ''}
+            />
+            {/* <CardMedia
+              image={handleImage(file)}
               title='Title'
               
-            />
+            /> */}
           </div>
           <div className="right">
             <form onSubmit={handleInsert}>
               <div className="formInput">
                 <label htmlFor="file">
-                  Image: <DriveFolderUploadOutlinedIcon className="icon" />
+                  Hình ảnh: <DriveFolderUploadOutlinedIcon className="icon" />
                 </label>
                 <FileBase64
                   accept='image/*'
@@ -116,7 +128,7 @@ const New = ({ title, action }) => {
               </div>
 
               <div className="formInput">
-                <label>Name</label>
+                <label>Tên sản phẩm</label>
                 <input
                   type="text"
                   placeholder={selectedUser?.name}
@@ -124,7 +136,7 @@ const New = ({ title, action }) => {
                 />
               </div>
               <div className="formInput">
-                <label>Price</label>
+                <label>Giá</label>
                 <input
                   type="text"
                   placeholder={selectedUser?.price}
@@ -132,32 +144,18 @@ const New = ({ title, action }) => {
                 />
               </div>
 
-              <div className="formInput">
-                <label>Amount</label>
-                <input
-                  type="text"
-                  placeholder={selectedUser?.amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                />
-              </div>
+              
 
               <div className="formInput">
-                <label>Description</label>
+                <label>Mô tả</label>
                 <input
                   type="text"
                   onChange={(e) => setDescription(e.target.value)}
                 />
               </div>
 
-              <div className="formInput">
-                <label>Brand</label>
-                <input
-                  type="text"
-                  placeholder={selectedUser?.brand_id}
-                  onChange={(e) => setBrand(e.target.value)}
-                />
-              </div>
-
+             
+                <br></br>
               <select
                 className="table-group-action-input form-control"
                 placeholder={selectedUser?.category_id}
@@ -168,7 +166,7 @@ const New = ({ title, action }) => {
                 }}
               >
                 <option value="1">Xe cộ</option>
-                <option value="2">Bất động sản</option>
+                <option value="2">Thú cưng</option>
                 <option value="3">Điện tử</option>
                 <option value="4">Nội thất</option>
                 <option value="5">Thời Trang</option>
@@ -185,7 +183,7 @@ const New = ({ title, action }) => {
                 <option value="Unpublished">Unpublished</option>
               </select>
 
-              <button type="submit">Send</button>
+              <button style={{borderRadius:'10px'}} type="submit">Send</button>
             </form>
           </div>
         </div>

@@ -35,5 +35,9 @@ router.get("/getLength",productController.getProductLength)
 
 router.get("/search",productController.search)
 
+router.post("/searchbyname",productController.searchByName)
+
+router.get("/getLastest",productController.getLastestProductId)
+
 
 module.exports = router;

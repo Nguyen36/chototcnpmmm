@@ -1,5 +1,6 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
+import TextField from '@mui/material/TextField';
 import { userColumns,productColumns } from "../../../datatablesource";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -66,19 +67,20 @@ const Datatable = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New Product
+        Quản lý tin bán
         <Link to="/admin/products/new" className="link">
           Add New
         </Link>
-      </div>   
-        <DataGrid getRowId={(row) => row._id}
-        className="datagrid"
-        rows={productList}
-        columns={productColumns.concat(actionColumn)}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
-        checkboxSelection
-          />
+      </div>
+      <div className="datatableSearchButton"></div>
+      <DataGrid getRowId={(row) => row._id}
+      className="datagrid"
+      rows={productList}
+      columns={productColumns.concat(actionColumn)}
+      pageSize={9}
+      rowsPerPageOptions={[9]}
+      checkboxSelection
+        />
     </div>
   );
 };
