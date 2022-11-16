@@ -5,8 +5,7 @@ import { deleteUserFalse, deleteUserStart, deleteUserSuccess,  editUserFalse,  e
 
 export const loginUser = async(user,dispatch,navigate) =>{
      dispatch(loginStart())
-    try{
-       
+    try{     
         const res= await axios.post("/login",user)
         localStorage.setItem('userInfo',JSON.stringify(res.data))
         const data =res.data    
@@ -57,13 +56,11 @@ export const registerUser = async(user,dispatch,navigate) =>{
 export const editUser = async(user,dispatch,navigate,id,accessToken) =>{
     dispatch(editUserStart())
    try{
-       console.log(accessToken)
        const res= await axios.put(`/user/edit/${id}`,user,{
         headers: {token: `Bearer ${accessToken}`},})
         console.log(accessToken)
        dispatch(editUserSuccess(res.data))
         //navigate('/login')
-       
            
    }catch(err){
        dispatch(editUserFalse(err.response.data))
@@ -133,6 +130,20 @@ export const deleteUser = async(accessToken,dispatch,id) =>{
     } catch (err) {
       dispatch(logOutFailed());
     }
+}
+
+export const getUser = async(id,dispatch,navigate,accessToken) =>{
+   try{     
+       const res= await axios.get(`/user/get/${id}`,{
+        headers: { token: `Bearer ${accessToken}` },
+      })
+    //    localStorage.setItem('userInfo',JSON.stringify(res.data))
+       const data =res.data    
+        console.log(id,accessToken)  
+        dispatch(loginSuccess(data))
+   }catch(err){
+    //    dispatch(loginFalse())
+   }
 }
 
 // export const getLengthUser = async() =>{

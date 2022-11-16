@@ -8,6 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { editUser, get1 } from "../../redux/apiRequest";
 import { Tabs, Tab, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getUser } from "../../redux/apiRequest";
 import {
   faLockOpen,
   faKey,
@@ -72,10 +73,14 @@ const Input = styled.input`
 const New = ({ title, action }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
-  const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
-
+  // let UserToken = {}
+  useEffect(()=>{
+    getUser(_id,dispatch , navigate, user?.accessToken)
+  })
+  let UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
+  const user = useSelector((state) => state.auth.login.currentUser)|| UserToken
+  const usertest = useSelector((state) => state)
+  // console.log(usertest)
   const [file, setFile] = useState(user?.image);
 
   const [username, setUsername] = useState(user?.username);
@@ -87,8 +92,8 @@ const New = ({ title, action }) => {
   const [phone, setPhone] = useState(user?.phone);
   const [fullname, setFullname] = useState(user?.fullname);
   const [role, setRole] = useState(user?.role);
-  const { id } = useParams();
-
+  const {_id} = UserToken
+ 
   const handleChangeProfile = (e) => {
     e.preventDefault();
 
@@ -99,7 +104,8 @@ const New = ({ title, action }) => {
       fullname,
       role,
     };
-    editUser(newUser, dispatch, navigate, id, user?.accessToken);
+    editUser(newUser, dispatch, navigate, _id, user?.accessToken);
+    
   };
 
   const handleChangePass = (e) => {
@@ -108,8 +114,14 @@ const New = ({ title, action }) => {
       password: password,
     };
     console.log(newUser.password);
-    editUser(newUser, dispatch, navigate, id, user?.accessToken);
+    editUser(newUser, dispatch, navigate, _id, user?.accessToken);
   };
+
+  const hanldeClickChange = (e) =>{
+    e.preventDefault();
+    alert('Thay đổi thành công')
+
+  }
   return (
     <div className="new">
       <div className="newContainer">
