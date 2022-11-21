@@ -75,7 +75,7 @@ const Product = () => {
   const selectedProduct = useSelector(
     (state) => state.product.products?.allProduct
   );
-  console.log(selectedProduct);
+  console.log();
   const handleLoadImage=(image)=>{
     if(image && image.length > 0){
       return image[0]
@@ -110,6 +110,7 @@ const Product = () => {
       
     });
   };
+  
 
   return (
     <Container>
@@ -133,7 +134,14 @@ const Product = () => {
             </span>
           </Price>
           <AddContainer>
-            <Button onClick={handleCart}>Thêm vào giỏ</Button>
+            { selectedProduct?.seller_id?._id===user?._id  ? (
+            <Button onClick={handleCart} hidden>Thêm vào giỏ</Button>
+
+            ):(
+              <Button onClick={handleCart}>Thêm vào giỏ</Button>
+            )
+              
+            }
           </AddContainer>
           <Tabs
             defaultActiveKey="information"
