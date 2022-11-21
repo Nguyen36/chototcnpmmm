@@ -51,7 +51,6 @@ const CategoryProducts1 = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const user = useSelector((state) => state.auth.login?.currentUser);
   const productList = useSelector((state) => state.product.one?.product);
 
   const { id } = useParams();
