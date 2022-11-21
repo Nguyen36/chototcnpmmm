@@ -182,9 +182,9 @@ const Cart = () => {
       <Wrapper>
         <Title>MY CART</Title>
         <Top>
-          <a href="/category/xe-so">
+          <Link to={"/"}>
             <TopButton>CONTINUE SHOPPING</TopButton>
-          </a>
+          </Link>
           <TopTexts>
             <TopText>Shopping Bag ({cart?.length})</TopText>
           </TopTexts>
