@@ -1,4 +1,5 @@
-How to run project
+Cách chạy project
+*Lưu ý: Trước hết clone project và checkout qua nhánh main2
 ---
 B1:Go to directory: _cd frontend_
 
