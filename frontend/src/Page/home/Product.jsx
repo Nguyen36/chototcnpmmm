@@ -69,12 +69,19 @@ const Product = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const user = useSelector((state) => state.auth.login?.currentUser);
+  const UserToken = JSON.parse(localStorage.getItem("userInfo")) || {};
+  const user =
+    useSelector((state) => state.auth.login.currentUser) || UserToken;
   const cart = useSelector((state) => state.cart.carts?.allCart);
   const selectedProduct = useSelector(
     (state) => state.product.products?.allProduct
   );
-  console.log(selectedProduct);
+  console.log();
+  const handleLoadImage = (image) => {
+    if (image && image.length > 0) {
+      return image[0];
+    }
+  };
 
   const { slug } = useParams();
   useEffect(() => {
@@ -100,9 +107,7 @@ const Product = () => {
     console.log(cartTemp);
 
     addToCart(tempProduct, cartTemp, dispatch, navigate);
-    toast.success("Thêm giỏ hàng thành công  !", {
-      
-    });
+    toast.success("Thêm giỏ hàng thành công  !", {});
   };
 
   return (
@@ -113,8 +118,8 @@ const Product = () => {
       />
 
       <Navbar />
-      <ToastContainer/>
-    
+      <ToastContainer />
+
       <Wrapper>
         <Image src={selectedProduct?.image} />
         <InfoContainer>
@@ -127,8 +132,9 @@ const Product = () => {
             </span>
           </Price>
           <AddContainer>
-            <IncDecCounter />
-            <Button onClick={handleCart}>ADD TO CART</Button>
+            {selectedProduct?.seller_id?._id === user?._id ? null : (
+              <Button onClick={handleCart}>Thêm vào giỏ</Button>
+            )}
           </AddContainer>
           <Tabs
             defaultActiveKey="information"

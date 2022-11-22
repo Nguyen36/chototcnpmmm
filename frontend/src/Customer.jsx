@@ -16,6 +16,7 @@ import OderDetail from './Page/home/OderDetail'
 import MyProfile from './Page/home/MyProfile'
 import Confirmation from './Page/home/Confirmation'
 import ConfirmEmail from './Page/home/ConfirmEmail'
+import ImageSearch from "./Page/home/ImageSearch";
 
 const Customer = () => {
   return (
@@ -33,6 +34,7 @@ const Customer = () => {
       <Route path="/myprofile/:id" element={<MyProfile />} />
       <Route path="/confirm-email" element={<Confirmation />} />
       <Route path="/confirm-email/:id" element={<ConfirmEmail />} />
+      <Route path="/imagesearch" element={<ImageSearch />} />
 
     </Routes>
   );

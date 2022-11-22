@@ -50,6 +50,7 @@ const Navbar1 = () => {
         className="bg-gradient-to-r from-pink-500 to-yellow-500"
       >
         <Toolbar className="flex justify-between p-3">
+        
           <div className="flex gap-4 items-center" 
           style={{marginLeft:40,textDecoration:"none"}}>
             <div className="w-[100px] h[100px] ">
