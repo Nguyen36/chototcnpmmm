@@ -13,7 +13,8 @@ const Datatable = () => {
   const navigate = useNavigate()
 
   // lay ra User
-  const user = useSelector((state) => state.auth.login?.currentUser)
+  const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
+  const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
  
   const oderList = useSelector((state)=> state.oder.oders?.allOder)
   const [data, setData] = useState(oderList);
@@ -54,10 +55,8 @@ const Datatable = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New Order
-        <Link to="/admin/products/new" className="link">
-          Add New
-        </Link>
+        Đơn bán
+        
       </div>   
         <DataGrid getRowId={(row) => row._id}
         className="datagrid"

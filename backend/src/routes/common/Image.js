@@ -5,6 +5,8 @@ const tfnode = require("@tensorflow/tfjs-node");
 const cocoSsd = require("@tensorflow-models/coco-ssd");
 const fs = require("fs");
 const translate=require('translate')
+const { promisify } = require('util')
+
 
 const storage = multer.diskStorage({
   destination: (req, file, callBack) => {
@@ -14,15 +16,19 @@ const storage = multer.diskStorage({
     callBack(null, `${Date.now()}_${file.originalname}`);
   },
 });
+const unlinkAsync = promisify(fs.unlink)
 
 const upload = multer({ storage: storage });
 router.post("/search", upload.single("file"), async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*")
   let re=await objectDetection(req.file.path);
+  //Remove file after use
   let text=''
   re.forEach((element) => {
     text=element.class
   });
+  await unlinkAsync(req.file.path)
+
   return res.status(200).json({ success: true, key: text });
 });
 const readImage = (path) => {

@@ -155,8 +155,10 @@ const FreeShip = styled.div`
 const Cart = () => {
   const dispatch = useDispatch();
  
-  const user = useSelector((state) => state.auth.login?.currentUser);
+  const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
+  const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
   const cart = useSelector((state) => state.cart.carts?.allCart);
+  
  
   const Sum = cart?.reduce( (total, currentValue) => {
     return total + currentValue?.price*currentValue?.quantity

@@ -4,12 +4,29 @@ import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
-
+import {useSelector} from 'react-redux'
+import { useState } from "react";
 const Widget = ({ type }) => {
-  let data;
 
+  let data;
+const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
+  const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
+ 
+  const countOrder = useSelector((state)=> {
+    if(state.oder.oders?.allOder){
+      return state.oder.oders?.allOder.length
+    }
+    else{
+      return 0
+    }
+  })
+  const total= useSelector((state)=> state.oder.oders?.allOder)
+
+  console.log(total)
+  console.log(countOrder)
+  const [count, setCount] = useState(0);
   //temporary
-  const amount = 100;
+  let amount = count
   const diff = 20;
 
   switch (type) {
@@ -29,9 +46,10 @@ const Widget = ({ type }) => {
         ),
       };
       break;
-    case "order":
+    case "TotalSold":
+      amount = countOrder;
       data = {
-        title: "ORDERS",
+        title: "Tổng số đơn bán",
         isMoney: false,
         link: "View all orders",
         icon: (
@@ -47,7 +65,7 @@ const Widget = ({ type }) => {
       break;
     case "earning":
       data = {
-        title: "EARNINGS",
+        title: "Doanh thu",
         isMoney: true,
         link: "View net earnings",
         icon: (

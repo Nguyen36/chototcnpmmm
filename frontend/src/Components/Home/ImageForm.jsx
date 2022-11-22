@@ -13,7 +13,6 @@ const Form = styled.form``;
 const ImageForm = () => {
   const onChangeFile = (e) => {
     setFile(e.target.files[0]);
-    console.log(file);
   };
   const handleLoad = (img) => {
     if (img) {
@@ -23,7 +22,6 @@ const ImageForm = () => {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(file);
     try {
       const formData = new FormData();
       formData.append("file", file);
@@ -36,7 +34,7 @@ const ImageForm = () => {
           },
         }
       );
-      console.log(res.data.key);
+      console.log("Sản phẩm tìm thấy: ",res.data.key);
     } catch (err) {
       console.log(err);
     }

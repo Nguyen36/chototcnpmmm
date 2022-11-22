@@ -11,8 +11,8 @@ import { useSelector } from "react-redux";
 
 const Home = () => {
   const navigate = useNavigate();
-
-  const user = useSelector((state) => state.auth.login?.currentUser);
+  const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
+  const user = useSelector((state) => state.auth.login.currentUser) || UserToken
   useEffect(() => {
     if (user === null || user?.role !== "2") {
       navigate("/");
@@ -25,9 +25,8 @@ const Home = () => {
       <div className="homeContainer">
         <Navbar />
         <div className="widgets">
-          <Widget type="order" />
+          <Widget type="TotalSold" />
           <Widget type="earning" />
-          <Widget type="balance" />
         </div>
         {/* <div className="charts">
           <Featured />

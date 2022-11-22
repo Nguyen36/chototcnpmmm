@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {} from "react-bootstrap";
 
 import { useEffect, useState } from "react";
-import { direct, editUser, loginUser } from "../../redux/apiRequest";
+import {  editUser, loginUser } from "../../redux/apiRequest";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
