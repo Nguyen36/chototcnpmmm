@@ -63,7 +63,7 @@ const Navbar1 = () => {
         style={{background:"#ffba00"}}
       >
         <Toolbar className="flex justify-between p-3">
-         
+        
           <div className="flex gap-4 items-center" 
           style={{marginLeft:40,textDecoration:"none"}}>
             <div className="w-[100px] h[100px] ">
