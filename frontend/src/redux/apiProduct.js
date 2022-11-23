@@ -1,4 +1,4 @@
-import axios from "axios"
+import { axiosClient as axios } from '../api';
 
 import { createFalse, createStart, createSuccess,deleteProductFalse, deleteProductStart, deleteProductSuccess,  editProductFalse,  editProductStart,  editProductSuccess,  get1ProductFalse,  get1ProductStart,  get1ProductSuccess,  getProductFalse, getProductStart, getProductSuccess } from "./productSlice";
 

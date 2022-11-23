@@ -1,5 +1,5 @@
 {
-  "name": "frontend2",
+  "name": "frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -73,6 +73,5 @@
     "@vitejs/plugin-react": "^2.0.0",
     "terser": "^5.14.2",
     "vite": "^3.0.4"
-  },
-  "proxy": "http://localhost:8000/"
+  }
 }

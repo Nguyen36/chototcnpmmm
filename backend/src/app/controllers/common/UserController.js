@@ -31,13 +31,14 @@ class UserController {
         }
      // [GET] /user/get/:id
     async getUser(req,res,next){
-        await User.findById(req.params.id)
-        .then(user =>{
+        console.log("req.params.id")
+        try{
+            const user = await User.findById(req.params.id)
             res.status(200).json(user) 
-        })
-        .catch(next)
-        
-        
+        }
+        catch(err){
+            console.error(err);
+        }          
     }
      //[PUT]  /user/edit/:id
      async update (req,res,next){

@@ -6,7 +6,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 
 import {  useState } from "react";
-import axios from "axios";
+import { axiosClient as axios } from '../../../api';
 
 
 

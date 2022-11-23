@@ -5,10 +5,10 @@ import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUpload
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { editUser, get1 } from "../../redux/apiRequest";
+import { editUser, getUser,get1  } from "../../redux/apiRequest";
 import { Tabs, Tab, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getUser } from "../../redux/apiRequest";
+
 import {
   faLockOpen,
   faKey,
@@ -74,13 +74,12 @@ const New = ({ title, action }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // let UserToken = {}
-  useEffect(()=>{
-    getUser(_id,dispatch , navigate, user?.accessToken)
-  })
-  let UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
-  const user = useSelector((state) => state.auth.login.currentUser)|| UserToken
-  const usertest = useSelector((state) => state)
-  // console.log(usertest)
+  useEffect(() => {
+    get1(UserToken.accessToken,dispatch,_id)
+  },[])
+  let UserToken = JSON.parse(localStorage.getItem('userInfo'))
+  const user = useSelector((state) => state.user?.users?.allUsers)
+  console.log("user",user)
   const [file, setFile] = useState(user?.image);
 
   const [username, setUsername] = useState(user?.username);
@@ -93,7 +92,8 @@ const New = ({ title, action }) => {
   const [fullname, setFullname] = useState(user?.fullname);
   const [role, setRole] = useState(user?.role);
   const {_id} = UserToken
- 
+
+
   const handleChangeProfile = (e) => {
     e.preventDefault();
 
@@ -104,8 +104,8 @@ const New = ({ title, action }) => {
       fullname,
       role,
     };
-    editUser(newUser, dispatch, navigate, _id, user?.accessToken);
-    
+    editUser(newUser, dispatch, navigate, _id, UserToken.accessToken);
+    // get1(UserToken.accessToken,dispatch,_id)
   };
 
   const handleChangePass = (e) => {
@@ -114,7 +114,7 @@ const New = ({ title, action }) => {
       password: password,
     };
     console.log(newUser.password);
-    editUser(newUser, dispatch, navigate, _id, user?.accessToken);
+    editUser(newUser, dispatch, navigate, _id, UserToken.accessToken);
   };
 
   const hanldeClickChange = (e) =>{
@@ -209,7 +209,7 @@ const New = ({ title, action }) => {
                 <Label>Full Name</Label>
                 <Input
                   type="text"
-                  value={fullname}
+                  value={fullname ? fullname : user?.fullname}
                   onChange={(e) => setFullname(e.target.value)}
                 />
               </ContactItem>
@@ -224,7 +224,7 @@ const New = ({ title, action }) => {
                 <Label>Email</Label>
                 <Input
                   type="email"
-                  value={email}
+                  value={email ? email: user?.email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </ContactItem>
@@ -239,7 +239,7 @@ const New = ({ title, action }) => {
                 <Label>Phone</Label>
                 <Input
                   type="text"
-                  value={phone}
+                  value={phone ? phone :user?.phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
               </ContactItem>
