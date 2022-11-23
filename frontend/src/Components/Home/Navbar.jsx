@@ -5,12 +5,13 @@ import styled from "styled-components";
 import { logOut } from "../../redux/apiRequest";
 import "./navbar.scss";
 import Form from 'react-bootstrap/Form';
-
+import { loginUser } from "../../redux/apiRequest";
 import {
   AppBar,
   Toolbar
 } from "@material-ui/core";
 import { ShoppingCart } from "@material-ui/icons";
+import { useEffect } from "react";
 const Button = styled.button`
   padding: 10px 25px;
   font-size: 15px;
@@ -39,6 +40,8 @@ const SearchContainer = styled.div`
   right: 0;
   background-color: rgba(0, 0, 0, 0.2);
 `;
+
+
 const Navbar1 = () => {
   const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
   const user = useSelector((state) => state.auth.login.currentUser) || UserToken;

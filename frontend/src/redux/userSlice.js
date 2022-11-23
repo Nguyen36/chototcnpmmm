@@ -31,6 +31,7 @@ import {createSlice} from "@reduxjs/toolkit"
         deleteUserSuccess: (state,action) =>{
             state.users.isFetching=false;
             state.msg=action.payload;
+           
         },
         deleteUserFalse: (state,action) =>{
             state.users.isFetching=false
@@ -44,7 +45,7 @@ import {createSlice} from "@reduxjs/toolkit"
         },
         editUserSuccess: (state,action) =>{
             state.users.isFetching=false;
-            state.msg=action.payload;
+            state.users.allUsers=action.payload;
         },
         editUserFalse: (state,action) =>{
             state.users.isFetching=false

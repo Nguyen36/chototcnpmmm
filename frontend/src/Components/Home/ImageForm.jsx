@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
-import axios from "axios";
+import { axiosClient as axios } from '../../api';
 import Button from '@mui/material/Button';
 import { Typography } from "@material-ui/core";
 import { IconButton } from "@mui/material";

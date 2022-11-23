@@ -12,7 +12,7 @@ import {
   editProduct,
   get1Product,
 } from "../../../redux/apiProduct";
-import axios from "axios";
+import { axiosClient as axios } from '../../../api';
 
 const New = ({ title, action }) => {
   const dispatch = useDispatch();
@@ -81,7 +81,13 @@ const New = ({ title, action }) => {
       status,
       description,
     };
-    createProduct(newProduct, dispatch, navigate, productid, user?.accessToken);
+    if(action =='new'){
+      createProduct(newProduct, dispatch, navigate, productid, user?.accessToken);
+    }else{
+      editProduct(newProduct,dispatch,navigate, productid, user?.accessToken)
+    }
+   
+    
   };
   return (
     <div className="new">
