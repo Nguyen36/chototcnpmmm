@@ -1,19 +1,17 @@
 Cách chạy project
-*Lưu ý: Trước hết clone project và checkout qua nhánh main2
 ---
-B1:Go to directory: _cd frontend_
+```
+B1: Go to directory: cd backend
 
-B2:Install library: _npm install_
+B2: Cài đặt các thư viện: npm install --legacy-peer-deps
 
-B3:In the project directory, you can run: _npm start_
+B3: Chạy tiếp npm install: npm intsall npm install @tensorflow/tfjs-converter --legacy-peer-deps
+Lưu ý: nếu thấy thông báo thư viện nào bị lỗi khi start thì phải chạy lệnn install chỉ định lên thư viện đó theo cú pháp:
+npm install tenthuvien --legacy-peer-deps
 
-B4:Open [http://localhost:3000/] to view it in your browser.
-
-B5:The page will reload when you make changes.
-
-_Same steps for backend_
-
-What technologies we use to build this project
+B4: Chạy backend sau khi install: npm start
+Lưu ý: nếu thấy thông báo thư viện nào bị lỗi khi start thì phải chạy lệnn install chỉ định lên thư viện đó theo cú phá
+```
 ---
 MERN stack(MongoDB, ExpressJs, ReactJs, NodeJs)
 
