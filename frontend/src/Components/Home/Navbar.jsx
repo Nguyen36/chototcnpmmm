@@ -7,8 +7,56 @@ import "./navbar.scss";
 import Form from "react-bootstrap/Form";
 import { loginUser } from "../../redux/apiRequest";
 import { AppBar, Toolbar } from "@material-ui/core";
-import { ShoppingCart } from "@material-ui/icons";
+import { PhotoCamera, ShoppingCart } from "@material-ui/icons";
 import { useEffect } from "react";
+import SearchIcon from "@material-ui/icons/Search";
+import { styled as styled1, alpha } from "@material-ui/core/styles";
+import { InputBase } from "@material-ui/core";
+import { IconButton } from "@material-ui/core";
+const Search = styled1("div")(({ theme }) => ({
+  position: "relative",
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: "white !important",
+  "&:hover": {
+    backgroundColor: "white !important",
+  },
+  marginLeft: 0,
+  width: "100%",
+  
+  [theme.breakpoints.up("sm")]: {
+    marginLeft: theme.spacing(1),
+    width: "auto",
+  },
+}));
+
+const SearchIconWrapper = styled1("div")(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: "100%",
+  position: "absolute",
+  pointerEvents: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+}));
+
+const StyledInputBase = styled1(InputBase)(({ theme }) => ({
+  color: "inherit",
+  backgroundColor: "white",
+  "& .MuiInputBase-input": {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      width: "12ch",
+      "&:focus": {
+        width: "20ch",
+      },
+    },
+  },
+}));
+
 const Button = styled.button`
   padding: 10px 25px;
   font-size: 15px;
@@ -25,6 +73,7 @@ const Button = styled.button`
   border: 1px solid transparent;
   text-transform: uppercase;
 `;
+
 const SearchContainer = styled.div`
   width: 100%;
   height: 100%;
@@ -39,6 +88,7 @@ const SearchContainer = styled.div`
 `;
 
 const Navbar1 = () => {
+  
   const UserToken = JSON.parse(localStorage.getItem("userInfo")) || {};
   const user =
     useSelector((state) => state.auth.login.currentUser) || UserToken;
@@ -58,7 +108,7 @@ const Navbar1 = () => {
   return (
     // {`ROLE: ${user?.role === "2" ? "seller" : "customer"}`}
     <div style={{ position: "fixed", zIndex: "10", width: "100%" }}>
-      <AppBar position="static" style={{ background: "#ffba00" }}>
+      <AppBar position="static" style={{ background: "#000" }}>
         <Toolbar className="flex justify-between p-3">
           <div
             className="flex gap-4 items-center"
@@ -73,7 +123,23 @@ const Navbar1 = () => {
                 ></img>
               </div>
             </Link>
-
+            <Search className="!bg-white !rounded-md ">
+              <StyledInputBase
+                placeholder="Search..."
+                inputProps={{
+                  "aria-label": "search",
+                  style: { paddingLeft:"10px",color:"black",opacity:"0.7" },
+                }}
+              ></StyledInputBase>
+              <IconButton aria-label="search"  >
+                <SearchIcon style={{ color: "black" }} />
+              </IconButton>
+            </Search>
+            <IconButton onClick={()=>{
+              navigate("/imagesearch")
+            }}>
+              <PhotoCamera style={{ color: "white" }} />
+            </IconButton>
             {/* <Typography variant="h5" classnames="select-none">
               Chợ tốt
             </Typography> */}
@@ -109,6 +175,7 @@ const Navbar1 = () => {
                   <img
                     src="https://i0.wp.com/thatnhucuocsong.com.vn/wp-content/uploads/2022/09/avatar-hai-1.jpg?ssl=1"
                     className="w-full h-full rounded-full"
+                    alt=""
                   ></img>
                 </div>
                 {show && (

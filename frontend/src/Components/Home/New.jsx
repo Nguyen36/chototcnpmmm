@@ -18,24 +18,25 @@ import {
   faPhone,
   faAddressBook,
 } from "@fortawesome/free-solid-svg-icons";
+import { Button, IconButton } from "@material-ui/core";
 
-const Button = styled.button`
-  padding: 10px 25px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #ffffff;
-  cursor: pointer;
-  border-radius: 10px;
-  background-image: linear-gradient(
-    to right,
-    #00d2ff 0,
-    #1fa5ea 50%,
-    #3a7bd5 100%
-  );
-  border: 1px solid transparent;
-  text-transform: uppercase;
-  margin-top: 20px;
-`;
+// const Button = styled.button`
+//   padding: 10px 25px;
+//   font-size: 15px;
+//   font-weight: 500;
+//   color: #ffffff;
+//   cursor: pointer;
+//   border-radius: 10px;
+//   background-image: linear-gradient(
+//     to right,
+//     #00d2ff 0,
+//     #1fa5ea 50%,
+//     #3a7bd5 100%
+//   );
+//   border: 1px solid transparent;
+//   text-transform: uppercase;
+//   margin-top: 20px;
+// `;
 
 const ContactItem = styled.div`
   margin-top: 20px;
@@ -127,7 +128,7 @@ const New = ({ title, action }) => {
       <div className="newContainer">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"/>
         <Tabs
-          defaultActiveKey="changeAvatar"
+          defaultActiveKey="changePassword"
           transition={false}
           id="fill-tab-example"
           className="mb-3"
@@ -174,10 +175,10 @@ const New = ({ title, action }) => {
                 />
               </ContactItem>
 
-              <Button type="submit">Change</Button>
+              <Button variant="contained" className="!bg-sky-600  !text-white !mt-10" type="submit">Change</Button>
             </form>
           </Tab>
-          <Tab eventKey="changeAvatar" title="Change Avatar">
+          {/* <Tab eventKey="changeAvatar" title="Change Avatar">
             <form  style={{textAlign:'center'}}>
               <div className="left">
                 <img
@@ -199,7 +200,7 @@ const New = ({ title, action }) => {
               </div>
               <Button type="submit">Change</Button>
             </form>
-          </Tab>
+          </Tab> */}
           <Tab eventKey="personalInfo" title="Personal Info">
             <form  style={{textAlign:'center'}} onSubmit={handleChangeProfile}>
               <ContactItem>
@@ -245,7 +246,7 @@ const New = ({ title, action }) => {
               </ContactItem>
              
 
-              <Button type="submit">Change</Button>
+              <Button variant="contained" className="!bg-sky-600  !text-white !mt-10" type="submit">Change</Button>
             </form>
           </Tab>
         </Tabs>
