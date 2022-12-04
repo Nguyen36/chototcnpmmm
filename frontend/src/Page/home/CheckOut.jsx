@@ -189,7 +189,9 @@ const CheckOut = () => {
         receiver: receiver,
         pay_id: payment,
       };
-      createOder(newOder, dispatch);
+      if(i===0){
+        createOder(newOder, dispatch);
+      }
 
       const newOderDetail = {
         _id: temp,
