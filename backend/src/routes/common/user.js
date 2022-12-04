@@ -22,5 +22,12 @@ router.put("/edit/:id", userController.update);
 
 router.get("/getLength", userController.getUserLength);
 
+router.post("/favorite/add/:id", userController.addFavorite);
+
+router.post("/favorite/delete/:id", userController.deleteFavorite);
+
+
+router.get("/favorite/get/:id", userController.getFavorite);
+
 
 module.exports = router;

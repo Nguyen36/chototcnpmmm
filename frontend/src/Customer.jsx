@@ -30,6 +30,7 @@ const Customer = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/category/:id" element={<Caterogy1 />} />
       <Route path="/myorder/:id" element={<MyOder />} />
+      {/* <Route path="/myprofile/favorite/:id" element={} /> */}
       <Route path="/myorder/orderdetail/:id" element={<OderDetail />} />
       <Route path="/myprofile/:id" element={<MyProfile />} />
       <Route path="/confirm-email" element={<Confirmation />} />

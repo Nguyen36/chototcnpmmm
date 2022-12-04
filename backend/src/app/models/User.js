@@ -45,6 +45,10 @@ const User = new Schema({
         required: true,
        
     },
+    favorites:[{
+        type: String,
+        ref: 'Product'
+    }],
     slug: {
         type:String, 
         slug:'username',

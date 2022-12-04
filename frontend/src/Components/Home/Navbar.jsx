@@ -204,6 +204,13 @@ const Navbar1 = () => {
                       Đăng tin
                     </Link>
                     <Link
+                      to={`/myprofile/favorite/${user?.slug}`}
+                      style={{ textDecoration: "none" }}
+                      className="text-[17px] flex m-2  hover:opacity-60 rounded-lg"
+                    >
+                     Tin đăng đã lưu
+                    </Link>
+                    <Link
                       to="/logout"
                       onClick={handleLogout}
                       className="text-[17px] flex m-2  hover:opacity-60 rounded-lg text-gray-400"
