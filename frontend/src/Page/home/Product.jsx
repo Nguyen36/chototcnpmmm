@@ -11,7 +11,7 @@ import Newsletter from "../../Components/Home/Newsletter";
 import { get1ProductBySlug } from "../../redux/apiProduct";
 import { addToCart } from "../../redux/cart";
 import {Button,IconButton} from "@material-ui/core";
-import { NoteAdd, Notes } from "@material-ui/icons";
+import { Favorite, NoteAdd, Notes } from "@material-ui/icons";
 import axios from "axios";
 const Container = styled.div``;
 
@@ -68,6 +68,7 @@ const AddContainer = styled.div`
 // `;
 
 const Product = () => {
+  window.scrollTo(0, 0);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -140,13 +141,13 @@ const Product = () => {
               {formatCurrency(selectedProduct?.price)}
             </span>
           </Price>
-          <AddContainer>
+          <AddContainer className="!mt-[20px]">
             {selectedProduct?.seller_id?._id === user?._id ? null : (
               <Button variant="outlined" className="!bg-black !text-white " 
               onClick={handleCart}>Thêm vào giỏ</Button>
             )}
             <Button variant="outlined" className="!ml-5 !bg-white"  onClick={handleFavorite} 
-            startIcon={<NoteAdd/>}>
+            startIcon={<Favorite className="!text-rose-500"/>}>
               Lưu tin
               </Button>
           </AddContainer>

@@ -90,6 +90,7 @@ class UserController {
     async getFavorite(req,res){
         console.log(req.params.id)
         await User.find({_id: req.params.id}).populate('favorites')
+
         .then((user)=>{
             res.status(200).json(user.map((item)=>item.favorites))
         })

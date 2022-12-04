@@ -6,13 +6,13 @@ import { logOut } from "../../redux/apiRequest";
 import "./navbar.scss";
 import Form from "react-bootstrap/Form";
 import { loginUser } from "../../redux/apiRequest";
-import { AppBar, Toolbar } from "@material-ui/core";
+import { AppBar, Icon, Toolbar } from "@material-ui/core";
 import { PhotoCamera, ShoppingCart } from "@material-ui/icons";
 import { useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import { styled as styled1, alpha } from "@material-ui/core/styles";
 import { InputBase } from "@material-ui/core";
-import { IconButton } from "@material-ui/core";
+import { IconButton,Button } from "@material-ui/core";
 const Search = styled1("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -57,22 +57,22 @@ const StyledInputBase = styled1(InputBase)(({ theme }) => ({
   },
 }));
 
-const Button = styled.button`
-  padding: 10px 25px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #ffffff;
-  cursor: pointer;
-  border-radius: 10px;
-  background-image: linear-gradient(
-    to right,
-    #00d2ff 0,
-    #1fa5ea 51%,
-    #3a7bd5 100%
-  );
-  border: 1px solid transparent;
-  text-transform: uppercase;
-`;
+// const Button = styled.button`
+//   padding: 10px 25px;
+//   font-size: 15px;
+//   font-weight: 500;
+//   color: #ffffff;
+//   cursor: pointer;
+//   border-radius: 10px;
+//   background-image: linear-gradient(
+//     to right,
+//     #00d2ff 0,
+//     #1fa5ea 51%,
+//     #3a7bd5 100%
+//   );
+//   border: 1px solid transparent;
+//   text-transform: uppercase;
+// `;
 
 const SearchContainer = styled.div`
   width: 100%;
@@ -134,6 +134,7 @@ const Navbar1 = () => {
               <IconButton aria-label="search"  >
                 <SearchIcon style={{ color: "black" }} />
               </IconButton>
+            
             </Search>
             <IconButton onClick={()=>{
               navigate("/imagesearch")
@@ -208,7 +209,7 @@ const Navbar1 = () => {
                       style={{ textDecoration: "none" }}
                       className="text-[17px] flex m-2  hover:opacity-60 rounded-lg"
                     >
-                     Tin đăng đã lưu
+                      Tin đăng đã lưu
                     </Link>
                     <Link
                       to="/logout"

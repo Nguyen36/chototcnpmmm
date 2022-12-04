@@ -17,7 +17,7 @@ export const loginUser = async(user,dispatch,navigate) =>{
             }
             else if(role==='2')
             {
-            navigate('/seller')
+            navigate('/')
             }
             else if(role ==='1')
             {
