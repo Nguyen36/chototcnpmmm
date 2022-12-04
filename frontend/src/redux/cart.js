@@ -1,4 +1,4 @@
-import axios from "axios"
+import { axiosClient as axios } from '../api';
 import {  deleteCartFalse,deleteCartStart,deleteCartSuccess,addCartFalse, addCartStart, addCartSuccess } from "./cartSlice"
 
 

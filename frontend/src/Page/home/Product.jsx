@@ -10,7 +10,9 @@ import Navbar from "../../Components/Home/Navbar";
 import Newsletter from "../../Components/Home/Newsletter";
 import { get1ProductBySlug } from "../../redux/apiProduct";
 import { addToCart } from "../../redux/cart";
-
+import {Button,IconButton} from "@material-ui/core";
+import { Favorite, NoteAdd, Notes } from "@material-ui/icons";
+import axios from "axios";
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -47,25 +49,26 @@ const AddContainer = styled.div`
   width: 50%;
 `;
 
-const Button = styled.button`
-  padding: 10px 25px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #ffffff;
-  cursor: pointer;
-  border-radius: 10px;
-  background-image: linear-gradient(
-    to right,
-    #00d2ff 0,
-    #1fa5ea 51%,
-    #3a7bd5 100%
-  );
-  border: 1px solid transparent;
-  text-transform: uppercase;
-  margin-top: 20px;
-`;
+// const Button = styled.button`
+//   padding: 10px 25px;
+//   font-size: 15px;
+//   font-weight: 500;
+//   color: #ffffff;
+//   cursor: pointer;
+//   border-radius: 10px;
+//   background-image: linear-gradient(
+//     to right,
+//     #00d2ff 0,
+//     #1fa5ea 51%,
+//     #3a7bd5 100%
+//   );
+//   border: 1px solid transparent;
+//   text-transform: uppercase;
+//   margin-top: 20px;
+// `;
 
 const Product = () => {
+  window.scrollTo(0, 0);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -109,7 +112,14 @@ const Product = () => {
     addToCart(tempProduct, cartTemp, dispatch, navigate);
     toast.success("Thêm giỏ hàng thành công  !", {});
   };
-
+  const handleFavorite=async ()=>{
+    console.log(user._id)
+    const product={productId:selectedProduct._id}
+    const res=await axios.post(`http://localhost:8000/user/favorite/add/${user._id}`,product)
+    if(res.status===200){
+      toast.success("Lưu tin thành công !", {});
+    }
+  }
   return (
     <Container>
       <link
@@ -131,10 +141,15 @@ const Product = () => {
               {formatCurrency(selectedProduct?.price)}
             </span>
           </Price>
-          <AddContainer>
+          <AddContainer className="!mt-[20px]">
             {selectedProduct?.seller_id?._id === user?._id ? null : (
-              <Button onClick={handleCart}>Thêm vào giỏ</Button>
+              <Button variant="outlined" className="!bg-black !text-white " 
+              onClick={handleCart}>Thêm vào giỏ</Button>
             )}
+            <Button variant="outlined" className="!ml-5 !bg-white"  onClick={handleFavorite} 
+            startIcon={<Favorite className="!text-rose-500"/>}>
+              Lưu tin
+              </Button>
           </AddContainer>
           <Tabs
             defaultActiveKey="information"

@@ -1,4 +1,4 @@
-import axios from "axios"
+import { axiosClient as axios } from '../api';
 import {loginFalse, loginStart, loginSuccess, registerFalse, registerStart, registerSuccess, logOutStart,logOutSuccess,logOutFailed} from './authSlice'
 import { deleteUserFalse, deleteUserStart, deleteUserSuccess,  editUserFalse,  editUserStart,  editUserSuccess,  getUsersFalse, getUsersStart, getUsersSuccess } from "./userSlice";
 
@@ -17,7 +17,7 @@ export const loginUser = async(user,dispatch,navigate) =>{
             }
             else if(role==='2')
             {
-            navigate('/seller')
+            navigate('/')
             }
             else if(role ==='1')
             {
@@ -58,7 +58,7 @@ export const editUser = async(user,dispatch,navigate,id,accessToken) =>{
    try{
        const res= await axios.put(`/user/edit/${id}`,user,{
         headers: {token: `Bearer ${accessToken}`},})
-        console.log(accessToken.user)
+        console.log(res)
        dispatch(editUserSuccess(res.data))
         //navigate('/login')
            
@@ -85,16 +85,19 @@ export const getAllUsers = async(accessToken,dispatch) =>{
 
 export const get1 = async(accessToken,dispatch,id) =>{
     dispatch(getUsersStart())
-   try{
+    console.log("OK")
+    try{
        
-       const res= await axios.get("/user/get/"+id,{
-           headers: {token: `Bearer ${accessToken}`},
-       })
+        const res= await axios.get(`/user/get/${id}`,{
+            headers: { token: `Bearer ${accessToken}` },
+        })
+        console.log(res)
        dispatch(getUsersSuccess(res.data))
     
        
            
    }catch(err){
+        console.error(err)
        dispatch(getUsersFalse())
    }
 }

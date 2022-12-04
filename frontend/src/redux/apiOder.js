@@ -1,4 +1,4 @@
-import axios from "axios"
+import { axiosClient as axios } from '../api';
 
 import { createFalse, createStart, createSuccess,deleteOderFalse, deleteOderStart, deleteOderSuccess,  editOderFalse,  editOderStart,  editOderSuccess,  getFullFalse,  getFullStart,  getFullSuccess,  getOderFalse, getOderStart, getOderSuccess } from "./oderSlice";
 

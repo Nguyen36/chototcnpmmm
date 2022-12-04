@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import {  toast } from 'react-toastify';
 import { registerUser } from "../../redux/apiRequest";
-import axios from "axios";
+import { axiosClient as axios } from '../../api';
 import emailjs from '@emailjs/browser';
 // import {  toast } from 'react-toastify';
 // import React from 'react';
@@ -16,7 +16,7 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.2),
       rgba(255, 255, 255, 0.2)
     ),
-    url("https://swall.teahub.io/photos/small/16-160847_yamaha-yzf-r1-2020-bike-4k-wallpaper-yzf.jpg");
+    url("https://doopage.com/assets/uploads/2019/05/cach-ban-hang-online-hieu-qua-nhat.png");
   transform: scaleX(-1);
   background-size: cover;
   position: absolute;

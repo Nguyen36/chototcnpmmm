@@ -11,9 +11,8 @@ const route = require('./routes')
 const db = require('./config/db');
 const { header } = require('express/lib/request');
 
-const cors= require('cors')
 const cookieParser= require('cookie-parser')
-
+const cors = require('cors');
 const app = express();
 const port = 8000;
 //Login
@@ -22,23 +21,21 @@ const port = 8000;
 
 // app.use(express.urlencoded({extended: true}));
 // app.use(express.json());
-app.use(express.json({limit: '50mb'}));
-app.use(express.urlencoded({limit: '50mb'}));
-
 
 // HTTP logger
 app.use(morgan('combined'))
+app.use(cors({origin: ['http://127.0.0.1:3000','http://localhost:3000']}))
+
+app.use(cookieParser())
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb'}));
 
 // Routes init
+
 route(app);
 
 // DB
 db.connect();
-
-
-app.use(cors())
-app.use(cookieParser())
-
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`)

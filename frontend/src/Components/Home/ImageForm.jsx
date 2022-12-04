@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
-import axios from "axios";
+import { axiosClient as axios } from '../../api';
 import Button from '@mui/material/Button';
 import { Typography } from "@material-ui/core";
 import { IconButton } from "@mui/material";
@@ -19,6 +19,7 @@ const ImageForm = () => {
       console.log(img);
       return URL.createObjectURL(img);
     }
+    return "https://res.cloudinary.com/dddmdgm0w/image/upload/v1669973537/senki_avatar/senki_avatar/icons8-no-image-400_ll5wsd.png"
   };
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -41,7 +42,7 @@ const ImageForm = () => {
   };
   const [file, setFile] = useState();
   return (
-    <Container className="static h-[250px] flex flex-col content-center">
+    <Container className="static h-[350px] flex flex-col content-center">
       <div className="flex flex-col content-center">
         <Typography
           style={{ textAlign: "center" }}
@@ -50,13 +51,13 @@ const ImageForm = () => {
           Put your image here
         </Typography>
       </div>
-      <div className="h-[100px] mb-[10px] flex justify-center">
+      <div className="h-[200px] mb-[10px] flex justify-center">
         <img
           src={handleLoad(file)}
           alt="productImage"
           style={{
             width: "400px",
-            height: "200px",
+            height: "300px",
             borderRadius: "10px !important",
             objectFit: "cover",
           }}
@@ -74,8 +75,8 @@ const ImageForm = () => {
           />
           <label for="file">Choose a file</label>
           <br></br>
-          <div className="flex justify-center">
-           <Button variant='contained' type="submit">Upload</Button>
+          <div className="flex justify-center mt-5">
+           <Button variant='contained' className="!bg-black" type="submit">Search</Button>
           </div>
         </Form>
       </div>

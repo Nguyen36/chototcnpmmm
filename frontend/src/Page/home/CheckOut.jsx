@@ -14,7 +14,7 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 import "./CheckOut.css";
 import { isFulfilled } from "@reduxjs/toolkit";
-import axios from "axios";
+import { axiosClient as axios } from '../../api';
 import { createOder } from "../../redux/apiOder";
 import { removeFormCart } from "../../redux/cart";
 import IncDecCounterCart from "../../Components/Home/IncDecCounterCart";

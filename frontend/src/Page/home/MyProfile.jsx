@@ -26,10 +26,13 @@ const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
+    // let UserToken = {}
+  let UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
+  
   const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
 
   useEffect(() => {
+    
     if (user === null) {
       navigate("/login");
     }

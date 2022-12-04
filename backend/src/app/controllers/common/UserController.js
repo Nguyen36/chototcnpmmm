@@ -31,13 +31,14 @@ class UserController {
         }
      // [GET] /user/get/:id
     async getUser(req,res,next){
-        await User.findById(req.params.id)
-        .then(user =>{
+        console.log("req.params.id")
+        try{
+            const user = await User.findById(req.params.id)
             res.status(200).json(user) 
-        })
-        .catch(next)
-        
-        
+        }
+        catch(err){
+            console.error(err);
+        }          
     }
      //[PUT]  /user/edit/:id
      async update (req,res,next){
@@ -58,6 +59,45 @@ class UserController {
             })
         
     }
+    async addFavorite(req,res){
+        console.log(req.params.id)
+        console.log(req.body);
+        const productId= req.body.productId;
+        await User.updateOne({_id: req.params.id},{$addToSet:{favorites:productId}})
+        .then((data) => {
+            console.log(data);
+            res.status(200).json('Updated Success')
+        }
+        )
+        .catch((err) =>{
+            return res.status(400).json(err);
+        })
+    }
+    async deleteFavorite(req,res){
+        console.log(req.params.id)
+        console.log("id",req.body);
+        const productId= req.body.productId;
+        await User.updateOne({_id: req.params.id},{$pull:{favorites:productId}})
+        .then((data) => {
+            console.log(data);
+            res.status(200).json('Updated Success')
+        }
+        )
+        .catch((err) =>{
+            return res.status(400).json(err);
+        })
+    }
+    async getFavorite(req,res){
+        console.log(req.params.id)
+        await User.find({_id: req.params.id}).populate('favorites')
+
+        .then((user)=>{
+            res.status(200).json(user.map((item)=>item.favorites))
+        })
+    }
+
+    
+        
 
     async getUserLength(req,res){
     

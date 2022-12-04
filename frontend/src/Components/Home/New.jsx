@@ -5,10 +5,10 @@ import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUpload
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { editUser, get1 } from "../../redux/apiRequest";
+import { editUser, getUser,get1  } from "../../redux/apiRequest";
 import { Tabs, Tab, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getUser } from "../../redux/apiRequest";
+
 import {
   faLockOpen,
   faKey,
@@ -18,24 +18,25 @@ import {
   faPhone,
   faAddressBook,
 } from "@fortawesome/free-solid-svg-icons";
+import { Button, IconButton } from "@material-ui/core";
 
-const Button = styled.button`
-  padding: 10px 25px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #ffffff;
-  cursor: pointer;
-  border-radius: 10px;
-  background-image: linear-gradient(
-    to right,
-    #00d2ff 0,
-    #1fa5ea 50%,
-    #3a7bd5 100%
-  );
-  border: 1px solid transparent;
-  text-transform: uppercase;
-  margin-top: 20px;
-`;
+// const Button = styled.button`
+//   padding: 10px 25px;
+//   font-size: 15px;
+//   font-weight: 500;
+//   color: #ffffff;
+//   cursor: pointer;
+//   border-radius: 10px;
+//   background-image: linear-gradient(
+//     to right,
+//     #00d2ff 0,
+//     #1fa5ea 50%,
+//     #3a7bd5 100%
+//   );
+//   border: 1px solid transparent;
+//   text-transform: uppercase;
+//   margin-top: 20px;
+// `;
 
 const ContactItem = styled.div`
   margin-top: 20px;
@@ -74,13 +75,12 @@ const New = ({ title, action }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // let UserToken = {}
-  useEffect(()=>{
-    getUser(_id,dispatch , navigate, user?.accessToken)
-  })
-  let UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
-  const user = useSelector((state) => state.auth.login.currentUser)|| UserToken
-  const usertest = useSelector((state) => state)
-  // console.log(usertest)
+  useEffect(() => {
+    get1(UserToken.accessToken,dispatch,_id)
+  },[])
+  let UserToken = JSON.parse(localStorage.getItem('userInfo'))
+  const user = useSelector((state) => state.user?.users?.allUsers)
+  console.log("user",user)
   const [file, setFile] = useState(user?.image);
 
   const [username, setUsername] = useState(user?.username);
@@ -93,7 +93,8 @@ const New = ({ title, action }) => {
   const [fullname, setFullname] = useState(user?.fullname);
   const [role, setRole] = useState(user?.role);
   const {_id} = UserToken
- 
+
+
   const handleChangeProfile = (e) => {
     e.preventDefault();
 
@@ -104,8 +105,8 @@ const New = ({ title, action }) => {
       fullname,
       role,
     };
-    editUser(newUser, dispatch, navigate, _id, user?.accessToken);
-    
+    editUser(newUser, dispatch, navigate, _id, UserToken.accessToken);
+    // get1(UserToken.accessToken,dispatch,_id)
   };
 
   const handleChangePass = (e) => {
@@ -114,7 +115,7 @@ const New = ({ title, action }) => {
       password: password,
     };
     console.log(newUser.password);
-    editUser(newUser, dispatch, navigate, _id, user?.accessToken);
+    editUser(newUser, dispatch, navigate, _id, UserToken.accessToken);
   };
 
   const hanldeClickChange = (e) =>{
@@ -127,7 +128,7 @@ const New = ({ title, action }) => {
       <div className="newContainer">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"/>
         <Tabs
-          defaultActiveKey="changeAvatar"
+          defaultActiveKey="changePassword"
           transition={false}
           id="fill-tab-example"
           className="mb-3"
@@ -174,10 +175,10 @@ const New = ({ title, action }) => {
                 />
               </ContactItem>
 
-              <Button type="submit">Change</Button>
+              <Button variant="contained" className="!bg-sky-600  !text-white !mt-10" type="submit">Change</Button>
             </form>
           </Tab>
-          <Tab eventKey="changeAvatar" title="Change Avatar">
+          {/* <Tab eventKey="changeAvatar" title="Change Avatar">
             <form  style={{textAlign:'center'}}>
               <div className="left">
                 <img
@@ -199,7 +200,7 @@ const New = ({ title, action }) => {
               </div>
               <Button type="submit">Change</Button>
             </form>
-          </Tab>
+          </Tab> */}
           <Tab eventKey="personalInfo" title="Personal Info">
             <form  style={{textAlign:'center'}} onSubmit={handleChangeProfile}>
               <ContactItem>
@@ -209,7 +210,7 @@ const New = ({ title, action }) => {
                 <Label>Full Name</Label>
                 <Input
                   type="text"
-                  value={fullname}
+                  value={fullname ? fullname : user?.fullname}
                   onChange={(e) => setFullname(e.target.value)}
                 />
               </ContactItem>
@@ -224,7 +225,7 @@ const New = ({ title, action }) => {
                 <Label>Email</Label>
                 <Input
                   type="email"
-                  value={email}
+                  value={email ? email: user?.email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </ContactItem>
@@ -239,13 +240,13 @@ const New = ({ title, action }) => {
                 <Label>Phone</Label>
                 <Input
                   type="text"
-                  value={phone}
+                  value={phone ? phone :user?.phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
               </ContactItem>
              
 
-              <Button type="submit">Change</Button>
+              <Button variant="contained" className="!bg-sky-600  !text-white !mt-10" type="submit">Change</Button>
             </form>
           </Tab>
         </Tabs>

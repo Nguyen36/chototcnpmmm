@@ -17,6 +17,7 @@ import MyProfile from './Page/home/MyProfile'
 import Confirmation from './Page/home/Confirmation'
 import ConfirmEmail from './Page/home/ConfirmEmail'
 import ImageSearch from "./Page/home/ImageSearch";
+import Favorites from "./Page/home/Favorites";
 
 const Customer = () => {
   return (
@@ -30,6 +31,7 @@ const Customer = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/category/:id" element={<Caterogy1 />} />
       <Route path="/myorder/:id" element={<MyOder />} />
+      <Route path="/myprofile/favorite/:id" element={<Favorites/>} />
       <Route path="/myorder/orderdetail/:id" element={<OderDetail />} />
       <Route path="/myprofile/:id" element={<MyProfile />} />
       <Route path="/confirm-email" element={<Confirmation />} />
