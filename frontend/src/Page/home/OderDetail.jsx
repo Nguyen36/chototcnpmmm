@@ -249,7 +249,7 @@ const Cart = () => {
             <h1 className="title !text-black">Thông tin đơn hàng </h1>
             <div className="item">
               <img
-                src="https://res.cloudinary.com/dddmdgm0w/image/upload/v1670229124/tiki_avatar/icons8-purchase-order-192_t49vym.png"
+                src="https://c8.alamy.com/comp/2ANK9RP/order-receipt-flat-icon-2ANK9RP.jpg"
                 alt=""
                 className="itemImg"
               />

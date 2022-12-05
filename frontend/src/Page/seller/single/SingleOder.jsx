@@ -43,6 +43,12 @@ const Single = () => {
   const handleEdit = ()=>{
     
   }
+  const currencyFormat = (num) => {
+    return num?.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  }
+  const shortDateFormat = (date) => {
+    return date?.slice(0,10)
+  }
 
   return (
     <div>
@@ -58,7 +64,7 @@ const Single = () => {
             <h1 className="title">Information Customer</h1>
             <div className="item">
               <img
-                src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png"
+                src="https://res.cloudinary.com/dddmdgm0w/image/upload/v1670228976/tiki_avatar/icons8-customer-256_f5r4qh.png"
                 alt=""
                 className="itemImg"
               />
@@ -97,25 +103,26 @@ const Single = () => {
               <div className="details">
                 
                 <div className="detailItem">
-                  <span className="itemKey">Order Id:</span>
+                  <span className="itemKey">Order No:</span>
                   <span className="itemValue">{selectedOder[0]?.oder_id._id}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Date:</span>
-                  <span className="itemValue">{selectedOder[0]?.oder_id.buy_date}</span>
+                  <span className="itemValue">{shortDateFormat(selectedOder[0]?.oder_id.buy_date)}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Status:</span>
                   <select className="a" onChange={(e)=>setStatus(e.target.value)} value ={status} > 
                     <option value="1" >Chờ xác nhận</option>
-
+                    <option value="2" >Đang giao</option>
+                    <option value="3" >Đã giao</option>
                     <option value="4" >Đã hủy</option>
                   </select>
                 
                 </div>
                 <br/>
-                <h1 className="itemTitle"
-                style={{fontWeight:'bolder'}}>Total: {plus} VNĐ</h1>
+                <h1 className="itemTitle !text-rose-400"
+                style={{fontWeight:'bolder'}}>Total: {currencyFormat(plus)} đ</h1>
               </div>
             </div>
           </div>

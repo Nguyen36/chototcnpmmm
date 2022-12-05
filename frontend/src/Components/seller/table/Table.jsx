@@ -8,6 +8,9 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useSelector } from "react-redux";
 const plus = (a,b)=> a*b
+const currencyFormat = (num) => {
+  return num?.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+}
 
 const List = () => {
   const rows = useSelector((state) => state.oder.full?.detail)
@@ -38,7 +41,7 @@ const List = () => {
               <TableCell className="tableCell">{row.oder_id.seller_id?.fullname}</TableCell>
               <TableCell className="tableCell">{row.product_id?.price}</TableCell>
               <TableCell className="tableCell">{row.quantity}</TableCell>
-              <TableCell className="tableCell">{`${plus(row.product_id?.price,row?.quantity)}`}</TableCell>
+              <TableCell className="tableCell">{`${currencyFormat(plus(row.product_id?.price,row?.quantity))}`} đ</TableCell>
               {/* <TableCell className="tableCell">
                 <span className={`status ${row.status}`}>{row.status}</span>
               </TableCell> */}
