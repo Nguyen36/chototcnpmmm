@@ -19,6 +19,7 @@ import {
   faAddressBook,
 } from "@fortawesome/free-solid-svg-icons";
 import { Button, IconButton } from "@material-ui/core";
+import { toast } from "react-toastify";
 
 // const Button = styled.button`
 //   padding: 10px 25px;
@@ -106,6 +107,7 @@ const New = ({ title, action }) => {
       role,
     };
     editUser(newUser, dispatch, navigate, _id, UserToken.accessToken);
+    toast.success("Thay đổi thông tin thành công");
     // get1(UserToken.accessToken,dispatch,_id)
   };
 
@@ -114,7 +116,7 @@ const New = ({ title, action }) => {
     const newUser = {
       password: password,
     };
-    console.log(newUser.password);
+    toast.success("Đổi mật khẩu thành công");
     editUser(newUser, dispatch, navigate, _id, UserToken.accessToken);
   };
 

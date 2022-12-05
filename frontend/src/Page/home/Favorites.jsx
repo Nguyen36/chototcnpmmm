@@ -44,15 +44,15 @@ const Favorites = () => {
     useSelector((state) => state.auth.login.currentUser) || UserToken;
   const [favorite, setFavorite] = useState();
   const [isDelete,setIsDelete]=useState(false)
+  const getData = async () => {
+    await axios
+      .get(`http://localhost:8000/user/favorite/get/${user._id}`)
+      .then((res) => {
+        setFavorite(res.data[0]);
+        // setIsDelete(!isDelete)
+      });
+  };
   useEffect(() => {
-    const getData = async () => {
-      await axios
-        .get(`http://localhost:8000/user/favorite/get/${user._id}`)
-        .then((res) => {
-          setFavorite(res.data[0]);
-          setIsDelete(!isDelete)
-        });
-    };
     getData();
   }, [isDelete]);
   return (
@@ -91,6 +91,7 @@ const Favorites = () => {
                       className="!ml-5 !bg-white !mr-5"
                       onClick={() => {
                         handleUnFavorite(item?._id);
+                        setIsDelete(!isDelete)
                       }}
                       startIcon={<Favorite className="!text-rose-500" />}
                     >

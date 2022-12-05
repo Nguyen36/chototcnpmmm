@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import { editUser, get1 } from "../../redux/apiRequest";
 import New from "../../Components/Home/New";
 
@@ -42,6 +43,7 @@ const Cart = () => {
   return (
     <Container>
       <Navbar />
+      <ToastContainer/>
       <Wrapper>
         <Title>MY PROFILE</Title>
         <New />
