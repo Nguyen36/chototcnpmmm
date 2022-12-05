@@ -50,7 +50,7 @@ const Favorites = () => {
         .get(`http://localhost:8000/user/favorite/get/${user._id}`)
         .then((res) => {
           setFavorite(res.data[0]);
-          setIsDelete(true)
+          setIsDelete(!isDelete)
         });
     };
     getData();

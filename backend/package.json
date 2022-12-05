@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/phupro123/node_js_web.git"
+    "url": "git+https://github.com/Nguyen36/chototcnpmmm.git"
   },
   "keywords": [
     "web"
@@ -20,9 +20,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/phupro123/node_js_web/issues"
+    "url": "https://github.com/Nguyen36/chototcnpmmm#readme"
   },
-  "homepage": "https://github.com/phupro123/node_js_web#readme",
+  "homepage": "https://github.com/Nguyen36/chototcnpmmm#readme",
   "dependencies": {
     "@tensorflow-models/coco-ssd": "^2.2.2",
     "@tensorflow-models/mobilenet": "^2.1.0",
