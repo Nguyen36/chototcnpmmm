@@ -121,16 +121,19 @@ export const deleteUser = async(accessToken,dispatch,id) =>{
 
 }
 
- export const logOut = async (dispatch, id, navigate, accessToken) => {
+ export const logOut =  (dispatch, id, navigate, accessToken) => {
     dispatch(logOutStart());
     try {
         localStorage.removeItem('userInfo')
-      await axios.post("/login/logout", id, {
-        headers: { token: `Bearer ${accessToken}` },
-      });
+
+    //   await axios.post("/login/logout", id, {
+    //     headers: { token: `Bearer ${accessToken}` },
+    //   });
       dispatch(logOutSuccess());
       navigate('/')
+
     } catch (err) {
+        console.log(err)
       dispatch(logOutFailed());
     }
 }

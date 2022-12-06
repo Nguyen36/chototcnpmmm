@@ -211,14 +211,13 @@ const Navbar1 = () => {
                     >
                       Tin đăng đã lưu
                     </Link>
-                    <Link
-                      to="/logout"
+                    <div
                       onClick={handleLogout}
-                      className="text-[17px] flex m-2  hover:opacity-60 rounded-lg text-gray-400"
+                      className="text-[17px] flex m-2  hover:opacity-60 rounded-lg !text-white cursor-pointer"
                       style={{ textDecoration: "none" }}
                     >
                       Đăng xuất
-                    </Link>
+                    </div>
                   </div>
                 )}
               </div>
