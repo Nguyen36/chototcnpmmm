@@ -18,6 +18,7 @@ import Confirmation from './Page/home/Confirmation'
 import ConfirmEmail from './Page/home/ConfirmEmail'
 import ImageSearch from "./Page/home/ImageSearch";
 import Favorites from "./Page/home/Favorites";
+import SearchResult from "./Page/home/SearchResult";
 
 const Customer = () => {
   return (
@@ -37,6 +38,7 @@ const Customer = () => {
       <Route path="/confirm-email" element={<Confirmation />} />
       <Route path="/confirm-email/:id" element={<ConfirmEmail />} />
       <Route path="/imagesearch" element={<ImageSearch />} />
+      <Route path="/search" element={<SearchResult />} />
 
     </Routes>
   );

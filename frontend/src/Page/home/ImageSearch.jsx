@@ -2,6 +2,7 @@ import { Slider } from "@material-ui/core";
 import React from "react";
 import { useState } from "react";
 import { Image } from "react-bootstrap";
+import { toast,ToastContainer } from "react-toastify";
 import styled from "styled-components";
 import Footer from "../../Components/Home/Footer";
 import ImageForm from "../../Components/Home/ImageForm";
@@ -18,6 +19,7 @@ const ImageSearch = () => {
   return (
     <Container>
       <Navbar1 />
+      <ToastContainer />
       <Wrapper>
         <ImageForm />
       </Wrapper>

@@ -1,16 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
-import { axiosClient as axios } from '../../api';
-import Button from '@mui/material/Button';
+import { axiosClient as axios } from "../../api";
+import Button from "@mui/material/Button";
 import { Typography } from "@material-ui/core";
 import { IconButton } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 const Container = styled.div`
   width: 100%;
 `;
 const Form = styled.form``;
 
 const ImageForm = () => {
+  const navigate = useNavigate();
   const onChangeFile = (e) => {
     setFile(e.target.files[0]);
   };
@@ -19,7 +22,7 @@ const ImageForm = () => {
       console.log(img);
       return URL.createObjectURL(img);
     }
-    return "https://res.cloudinary.com/dddmdgm0w/image/upload/v1669973537/senki_avatar/senki_avatar/icons8-no-image-400_ll5wsd.png"
+    return "https://res.cloudinary.com/dddmdgm0w/image/upload/v1669973537/senki_avatar/senki_avatar/icons8-no-image-400_ll5wsd.png";
   };
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -35,9 +38,10 @@ const ImageForm = () => {
           },
         }
       );
-      console.log("Sản phẩm tìm thấy: ",res.data.key);
+      navigate(`/search?query=${res.data.key}`);
+
     } catch (err) {
-      console.log(err);
+      toast.error("Tìm kiếm thất bại, không tìm thấy sản phẩm phù hợp");
     }
   };
   const [file, setFile] = useState();
@@ -76,7 +80,9 @@ const ImageForm = () => {
           <label for="file">Choose a file</label>
           <br></br>
           <div className="flex justify-center mt-5">
-           <Button variant='contained' className="!bg-black" type="submit">Search</Button>
+            <Button variant="contained" className="!bg-black" type="submit">
+              Search
+            </Button>
           </div>
         </Form>
       </div>

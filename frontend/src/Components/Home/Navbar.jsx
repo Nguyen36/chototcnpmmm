@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import { styled as styled1, alpha } from "@material-ui/core/styles";
 import { InputBase } from "@material-ui/core";
-import { IconButton,Button } from "@material-ui/core";
+import { IconButton, Button } from "@material-ui/core";
 const Search = styled1("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -22,7 +22,7 @@ const Search = styled1("div")(({ theme }) => ({
   },
   marginLeft: 0,
   width: "100%",
-  
+
   [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(1),
     width: "auto",
@@ -88,11 +88,11 @@ const SearchContainer = styled.div`
 `;
 
 const Navbar1 = () => {
-  
   const UserToken = JSON.parse(localStorage.getItem("userInfo")) || {};
   const user =
     useSelector((state) => state.auth.login.currentUser) || UserToken;
   const [show, setShow] = useState(false);
+  const [keyword, setKeyword] = useState();
   const accessToken = user?.accessToken;
   const id = user?._id;
   const dispatch = useDispatch();
@@ -103,6 +103,9 @@ const Navbar1 = () => {
   const handleNavigate = (name) => {
     let url = window.location.hostname;
     return navigate(`${url}/${name}`);
+  };
+  const handleSearch = (key) => {
+    navigate(`/search?query=${key}`);
   };
   const cart = useSelector((state) => state.cart.carts?.allCart);
   return (
@@ -123,22 +126,43 @@ const Navbar1 = () => {
                 ></img>
               </div>
             </Link>
-            <Search className="!bg-white !rounded-md ">
+            <Search
+              className="!bg-white !rounded-md "
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  navigate(`/search?query=${keyword}`);
+                }
+              }}
+            >
               <StyledInputBase
+                onInput={(e) => {
+                  setKeyword(e.target.value);
+                  console.log(e.target.value);
+                }}
                 placeholder="Search..."
                 inputProps={{
                   "aria-label": "search",
-                  style: { paddingLeft:"10px",color:"black",opacity:"0.7" },
+                  style: {
+                    paddingLeft: "10px",
+                    color: "black",
+                    opacity: "0.7",
+                  },
                 }}
               ></StyledInputBase>
-              <IconButton aria-label="search"  >
+              <IconButton
+                aria-label="search"
+                onClick={() => {
+                  navigate(`/search?query=${keyword}`);
+                }}
+              >
                 <SearchIcon style={{ color: "black" }} />
               </IconButton>
-            
             </Search>
-            <IconButton onClick={()=>{
-              navigate("/imagesearch")
-            }}>
+            <IconButton
+              onClick={() => {
+                navigate("/imagesearch");
+              }}
+            >
               <PhotoCamera style={{ color: "white" }} />
             </IconButton>
             {/* <Typography variant="h5" classnames="select-none">
