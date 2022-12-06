@@ -140,11 +140,12 @@ class ProductController {
   }
 
   async search(req, res) {
-    await Product.find({ name: { $regex: req.query.q } })
+    console.log(req.query.query)
+    await Product.find({ name: { $regex: req.query.query } })
 
       .then((product) => res.status(200).json(product))
       .catch((err) => {
-        return res.status(500).json(err);
+        return res.status(400).json(err);
       });
   }
 
