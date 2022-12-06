@@ -28,18 +28,20 @@ const ImageForm = () => {
     e.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("file", file);
-      const res = await axios.post(
-        "http://localhost:8000/image/search",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      navigate(`/search?query=${res.data.key}`);
-
+      if (file) {
+        formData.append("file", file);
+        const res = await axios.post(
+          "http://localhost:8000/image/search",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        navigate(`/search?query=${res.data.key}`);
+      }
+      toast.warn("Vui lòng đăng tải hình ảnh")
     } catch (err) {
       toast.error("Tìm kiếm thất bại, không tìm thấy sản phẩm phù hợp");
     }
