@@ -1,4 +1,5 @@
-import { axiosClient as axios } from '../api';
+import { axiosClient as axiosF } from '../api';
+import axios from 'axios';
 import {loginFalse, loginStart, loginSuccess, registerFalse, registerStart, registerSuccess, logOutStart,logOutSuccess,logOutFailed} from './authSlice'
 import { deleteUserFalse, deleteUserStart, deleteUserSuccess,  editUserFalse,  editUserStart,  editUserSuccess,  getUsersFalse, getUsersStart, getUsersSuccess } from "./userSlice";
 
@@ -6,9 +7,9 @@ import { deleteUserFalse, deleteUserStart, deleteUserSuccess,  editUserFalse,  e
 export const loginUser = async(user,dispatch,navigate) =>{
      dispatch(loginStart())
     try{     
-        const res= await axios.post("/login",user)
+        const res= await axiosF.post("/login",user)
         localStorage.setItem('userInfo',JSON.stringify(res.data))
-        const data =res.data    
+        const data =res.data
         if(data.verify)
             {dispatch(loginSuccess(res.data))
             const role =res.data.role
@@ -34,7 +35,29 @@ export const loginUser = async(user,dispatch,navigate) =>{
         dispatch(loginFalse())
     }
 }
-
+export const loginUserGoogle = async(dispatch,navigate,infoGoogle) =>{
+    dispatch(loginStart())
+   try{       
+        const res= await axiosF.post("/login/auth",infoGoogle)
+        console.log(res)
+        localStorage.setItem('userInfo',JSON.stringify(res.data))
+        dispatch(loginSuccess(res.data))
+        const role =res.data.role
+        if(role==='3'){
+            navigate('/')
+        }
+        else if(role==='2')
+        {
+        navigate('/')
+        }
+        else if(role ==='1')
+        {
+            navigate('/admin')
+        }
+   }catch(err){
+       dispatch(loginFalse())
+   }
+}
 
 
 
@@ -42,7 +65,7 @@ export const registerUser = async(user,dispatch,navigate) =>{
     dispatch(registerStart())
    try{
        
-       const res= await axios.post("/login/register",user)
+       const res= await axiosF.post("/login/register",user)
        dispatch(registerSuccess(res.data))
         
        
@@ -56,7 +79,7 @@ export const registerUser = async(user,dispatch,navigate) =>{
 export const editUser = async(user,dispatch,navigate,id,accessToken) =>{
     dispatch(editUserStart())
    try{
-       const res= await axios.put(`/user/edit/${id}`,user,{
+       const res= await axiosF.put(`/user/edit/${id}`,user,{
         headers: {token: `Bearer ${accessToken}`},})
         console.log(res)
        dispatch(editUserSuccess(res.data))
@@ -71,7 +94,7 @@ export const getAllUsers = async(accessToken,dispatch) =>{
     dispatch(getUsersStart())
    try{
        
-       const res= await axios.get("/user/all",{
+       const res= await axiosF.get("/user/all",{
            headers: {token: `Bearer ${accessToken}`},
        })
        dispatch(getUsersSuccess(res.data))
@@ -88,7 +111,7 @@ export const get1 = async(accessToken,dispatch,id) =>{
     console.log("OK")
     try{
        
-        const res= await axios.get(`/user/get/${id}`,{
+        const res= await axiosF.get(`/user/get/${id}`,{
             headers: { token: `Bearer ${accessToken}` },
         })
         console.log(res)
@@ -108,7 +131,7 @@ export const deleteUser = async(accessToken,dispatch,id) =>{
     dispatch(deleteUserStart())
    try{
        
-       const res= await axios.delete("/user/delete/"+id,{
+       const res= await axiosF.delete("/user/delete/"+id,{
            headers: {token: `Bearer ${accessToken}`},
        })
        dispatch(deleteUserSuccess(res.data))
@@ -126,7 +149,7 @@ export const deleteUser = async(accessToken,dispatch,id) =>{
     try {
         localStorage.removeItem('userInfo')
 
-    //   await axios.post("/login/logout", id, {
+    //   await axiosF.post("/login/logout", id, {
     //     headers: { token: `Bearer ${accessToken}` },
     //   });
       dispatch(logOutSuccess());
@@ -140,7 +163,7 @@ export const deleteUser = async(accessToken,dispatch,id) =>{
 
 export const getUser = async(id,dispatch,navigate,accessToken) =>{
    try{     
-       const res= await axios.get(`/user/get/${id}`,{
+       const res= await axiosF.get(`/user/get/${id}`,{
         headers: { token: `Bearer ${accessToken}` },
       })
     //    localStorage.setItem('userInfo',JSON.stringify(res.data))
@@ -156,7 +179,7 @@ export const getUser = async(id,dispatch,navigate,accessToken) =>{
     
 //     try{
         
-//        const  res= await axios.get("/user/getLength")
+//        const  res= await axiosF.get("/user/getLength")
 //          return res.data
      
 //     }catch(err){

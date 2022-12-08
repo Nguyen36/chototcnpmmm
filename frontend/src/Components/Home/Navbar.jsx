@@ -198,7 +198,7 @@ const Navbar1 = () => {
               >
                 <div className="w-[24px] h-[24px]">
                   <img
-                    src="https://i0.wp.com/thatnhucuocsong.com.vn/wp-content/uploads/2022/09/avatar-hai-1.jpg?ssl=1"
+                    src={user.image ? user.image : 'https://i0.wp.com/thatnhucuocsong.com.vn/wp-content/uploads/2022/09/avatar-hai-1.jpg?ssl=1'}
                     className="w-full h-full rounded-full"
                     alt=""
                   ></img>

@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import { useState } from "react";
 import { loginUser } from "../../redux/apiRequest";
-
+import LoginGoogle from "../../Components/Home/loginGoogle";
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -102,6 +102,7 @@ const Login = () => {
     <Container>
       <Wrapper>
         <Title>SIGN IN</Title>
+        <LoginGoogle></LoginGoogle>
         <Form onSubmit={handleLogin}>
           <Input
             placeholder="Username"

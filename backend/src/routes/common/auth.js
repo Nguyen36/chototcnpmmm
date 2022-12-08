@@ -13,9 +13,6 @@ const  {
 
 
 const user = require('../../app/models/User')
-
-
-
 //form register
 router.post('/register',authController.register)
 //form login
@@ -25,5 +22,5 @@ router.post("/refresh", authController.requestRefreshToken);
 //LOG OUT
 router.post("/logout", verifyToken, authController.logOut);
 
-
+router.post('/auth',authController.loginGoogle)
 module.exports = router;
