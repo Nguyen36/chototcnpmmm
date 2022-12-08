@@ -22,7 +22,6 @@ const List = () => {
           <TableRow>
             <TableCell className="tableCell">Tracking ID</TableCell>
             <TableCell className="tableCell">Product</TableCell>
-            <TableCell className="tableCell">Seller</TableCell>
             <TableCell className="tableCell">Price</TableCell>
             <TableCell className="tableCell">Quantity</TableCell>
             <TableCell className="tableCell">Total</TableCell>
@@ -39,7 +38,6 @@ const List = () => {
                   {row.product_id.name}
                 </div>
               </TableCell>
-              <TableCell className="tableCell">{row.oder_id.seller_id?.fullname}</TableCell>
               <TableCell className="tableCell">{formatCurrency(row.product_id?.price)}</TableCell>
               <TableCell className="tableCell">{row.quantity}</TableCell>
               <TableCell className="tableCell">{`${formatCurrency(plus(row.product_id?.price,row?.quantity))}`}</TableCell>

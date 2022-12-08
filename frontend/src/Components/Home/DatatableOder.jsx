@@ -47,7 +47,7 @@ const Datatable = () => {
       },
     },
   ];
-  console.log(oderList)
+
   return (
     <div className="datatable">
       <div className="datatableTitle">
