@@ -1,8 +1,8 @@
 var express = require("express");
 var router = express.Router();
 const multer = require("multer");
-// const tfnode = require("@tensorflow/tfjs-node");
-// const cocoSsd = require("@tensorflow-models/coco-ssd");
+const tfnode = require("@tensorflow/tfjs-node");
+const cocoSsd = require("@tensorflow-models/coco-ssd");
 const fs = require("fs");
 // const translate = require("translate");
 const { promisify } = require("util");
