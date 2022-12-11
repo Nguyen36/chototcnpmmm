@@ -155,6 +155,7 @@ const FreeShip = styled.div`
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const [status, setStatus] = useState()
  
   const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
   const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
@@ -179,11 +180,11 @@ const Cart = () => {
       
     if(user?.accessToken){
       getFull(user?.accessToken,dispatch,id)
+      setStatus(selectedOder[0]?.oder_id?.status)
       // getAllUsers(user?.accessToken,dispatch)
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[]) 
-  const [status, setStatus] = useState(selectedOder[0]?.oder_id?.status)
+  },[selectedOder[0]?.oder_id?.status]) 
   const handleEdit = ()=>{
     console.log('1')
   }
@@ -245,7 +246,7 @@ const Cart = () => {
             </div>
           </div>
           <div className="left">
-            <div className="editButton" onClick={handleEdit}>Edit</div>
+            {/* <div className="editButton" onClick={handleEdit}>Edit</div> */}
             <h1 className="title !text-black">Thông tin đơn hàng </h1>
             <div className="item">
               <img
@@ -265,9 +266,11 @@ const Cart = () => {
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Status:</span>
-                  <select className="a" onChange={(e)=>setStatus(e.target.value)} value ={status} > 
-                    <option value="1" >Chờ xác nhận</option>
-                    <option value="4" >Huỷ đơn</option>
+                  <select className="a" value ={status} disabled> 
+                   <option value="1" >Chờ xác nhận</option>
+                    <option value="2" >Đang giao</option>
+                    <option value="3" >Đã hoàn thành</option>
+                    <option value="4" >Đã hủy</option>
                   </select>
                 
                 </div>

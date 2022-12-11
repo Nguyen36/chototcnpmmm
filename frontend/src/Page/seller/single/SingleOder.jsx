@@ -10,6 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import { getFull } from "../../../redux/apiOder";
+import axios from "axios";
 
 
 
@@ -23,7 +24,6 @@ const Single = () => {
   const selectedOder = useSelector((state) => state.oder.full?.detail)
   
   const {orderId} = useParams()
-  console.log(orderId)
  // console.log(userId)
  const [status, setStatus] = useState(selectedOder[0]?.oder_id.status)
  const a=selectedOder
@@ -40,8 +40,13 @@ const Single = () => {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]) 
-  const handleEdit = ()=>{
-    
+  const handleEdit = async ()=>{
+    console.log(status)
+    const res=await axios.put(`http://localhost:8000/oder/edit/${orderId}`,{
+      status:status
+    })
+    console.log(res.status)
+
   }
   const currencyFormat = (num) => {
     return num?.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
