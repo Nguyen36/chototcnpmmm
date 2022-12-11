@@ -113,12 +113,17 @@ const Product = () => {
     toast.success("Thêm giỏ hàng thành công  !", {});
   };
   const handleFavorite=async ()=>{
-    console.log(user._id)
-    const product={productId:selectedProduct._id}
-    const res=await axios.post(`http://localhost:8000/user/favorite/add/${user._id}`,product)
-    if(res.status===200){
-      toast.success("Lưu tin thành công !", {});
+    if(user?._id){
+      const product={productId:selectedProduct._id}
+      const res=await axios.post(`http://localhost:8000/user/favorite/add/${user._id}`,product)
+      if(res.status===200){
+        toast.success("Lưu tin thành công !", {});
+      }
     }
+    else{
+      navigate("/login")
+    }
+   
   }
   return (
     <Container>

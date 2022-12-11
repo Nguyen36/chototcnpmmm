@@ -158,8 +158,9 @@ const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
-  const user = useSelector((state) => state.auth.login.currentUser) || UserToken;
+  const UserToken = JSON.parse(localStorage.getItem("userInfo")) || {};
+  const user =
+    useSelector((state) => state.auth.login.currentUser) || UserToken;
   console.log(user);
   let cart = useSelector((state) => state.cart.carts?.allCart);
 
@@ -167,17 +168,19 @@ const Cart = () => {
     return total + currentValue?.price * currentValue?.quantity;
   }, 0);
   const formatCurrency = (num) => {
-    if(num)
-    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.") + "đ";
+    if (num)
+      return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.") + "đ";
   };
   const handleRemove = (id, e) => {
-
     removeFormCart(id, cart, dispatch);
   };
   return (
     <Container>
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"/>
-      
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      />
+
       <Navbar />
       <Wrapper>
         <Title>MY CART</Title>
@@ -219,7 +222,9 @@ const Cart = () => {
                         <IncDecCounterCart product={product} />
                       </Details>
                       <Details className="text-danger">
-                        {`${formatCurrency(product?.price * product?.quantity)}`}
+                        {`${formatCurrency(
+                          product?.price * product?.quantity
+                        )}`}
                       </Details>
                       <FontAwesomeIcon
                         onClick={(e) => handleRemove(product?._id, e)}
@@ -248,9 +253,15 @@ const Cart = () => {
               <Hr />
               <FreeShip>* Miễn phí ship toàn quốc</FreeShip>
               <ContainerButton>
-                <Link to="/checkout">
-                  <Button type="submit">Check Out</Button>
-                </Link>
+                {user?._id ? (
+                  <Link to="/checkout">
+                    <Button type="submit">Check Out</Button>
+                  </Link>
+                ) : (
+                  <Link to="/login">
+                    <Button type="submit">Check Out</Button>
+                  </Link>
+                )}
               </ContainerButton>
             </CheckOut>
           </CartOrder>
