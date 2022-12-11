@@ -53,15 +53,15 @@ export const sliderItems = [
     {
       id: 4,
       img:"https://lighthouse.chotot.com/_next/image?url=https%3A%2F%2Fstatic.chotot.com%2Fstorage%2Fchapy-pro%2Fnewcats%2Fv8%2F14000.png&w=256&q=95",
-      title:"Nội thất",
-      alt:"Nội thất",
+      title:"Gia dụng, nội thất",
+      alt:"Nội thất, gia dụng",
 
     },
     {
       id: 5,
       img:"https://lighthouse.chotot.com/_next/image?url=https%3A%2F%2Fstatic.chotot.com%2Fstorage%2Fchapy-pro%2Fnewcats%2Fv8%2F3000.png&w=256&q=95",
-      title:"Thời trang",
-      alt:"Thời trang"
+      title:"Thời trang, phụ kiện",
+      alt:"Thời trang, phụ kiện"
       
     },
    

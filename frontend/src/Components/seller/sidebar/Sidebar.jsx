@@ -14,7 +14,7 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 
 //import { useContext } from "react";O
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate,useHistory } from "react-router-dom";
 import { logOut } from "../../../redux/apiRequest";
 const Sidebar = () => {
   const UserToken = JSON.parse(localStorage.getItem('userInfo')) || {}
@@ -67,7 +67,7 @@ const Sidebar = () => {
           </Link>
 
           <Link
-            to="/logout"
+            to="/"
             onClick={handleLogout}
             style={{ textDecoration: "none" }}
           >

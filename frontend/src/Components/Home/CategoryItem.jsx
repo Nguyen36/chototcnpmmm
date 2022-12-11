@@ -22,7 +22,7 @@ function CategoryItem({ item }) {
    >
       <div className="w-auto h-auto mw-100 mh-100 ">
         <img src={item.img} alt="" className="" />
-        <div className="flex justify-center ">
+        <div className="flex justify-center flex-wrap text-center ">
           <span className="">{item.alt}</span>
         </div>
       </div>

@@ -34,7 +34,10 @@ function SearchResult(props) {
     if(res.data.length === 0){
       toast.error("Không tìm thấy sản phẩm nào")
     }
-    toast.success(`Đã tìm thấy ${res.data.length} kết quả`)
+    else{
+      toast.success(`Đã tìm thấy ${res.data.length} kết quả`)
+
+    }
   };
   const formatCurrency = (num) => {
     if (num)

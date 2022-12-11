@@ -11,7 +11,6 @@ import { addToCart, removeAllFormCart } from "../../redux/cart";
 import { Accordion, Form } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-
 import "./CheckOut.css";
 import { isFulfilled } from "@reduxjs/toolkit";
 import { axiosClient as axios } from '../../api';
@@ -19,6 +18,8 @@ import { createOder } from "../../redux/apiOder";
 import { removeFormCart } from "../../redux/cart";
 import IncDecCounterCart from "../../Components/Home/IncDecCounterCart";
 import { createOderDetail } from "../../redux/OderDetail";
+import { v4 as uuidv4 } from 'uuid';
+
 
 const Container = styled.div``;
 
@@ -176,8 +177,7 @@ const CheckOut = () => {
   };
   const handleCheckout = () => {
     let i = 0;
-    let tempId = id + 1;
-    let temp = id2 + 1;
+    let tempId = uuidv4();
     for (i; i < length; i++) {
       const newOder = {
         _id: tempId,
@@ -189,20 +189,18 @@ const CheckOut = () => {
         receiver: receiver,
         pay_id: payment,
       };
-      if(i===0){
-        createOder(newOder, dispatch);
-      }
+      createOder(newOder, dispatch);
 
       const newOderDetail = {
-        _id: temp,
-        oder_id: id + 1,
+        _id: uuidv4(),
+        oder_id: tempId,
         product_id: cart[i]?._id,
         unit_price: cart[i]?.price,
         quantity: cart[i]?.quantity,
       };
       createOderDetail(newOderDetail);
-      temp += 1;
-      tempId += 1;
+      tempId = uuidv4();
+     
     }
     removeAllFormCart(cartTemp, dispatch);
     const slug = user?.slug;

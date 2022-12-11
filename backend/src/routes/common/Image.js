@@ -16,7 +16,7 @@ let cocoModel = [
   },
   {
     key: "car",
-    value: "xe hơi",
+    value: "ô tô",
   },
   {
     key: "bicycle",
@@ -26,6 +26,25 @@ let cocoModel = [
     key: "motorcycle",
     value: "xe máy",
   },
+  {
+    key:"sink",
+    value:"bồn"
+  },
+  {
+    key:"bed",
+    value:"giường"
+  }
+  ,
+  {
+    key:"vase",
+    value:"bình"
+  }
+  ,
+  {
+    key:"backpack",
+    value:"ba lô"
+  }
+  ,
   {
     key: "person",
     value: "người",
@@ -40,8 +59,20 @@ let cocoModel = [
   },
   {
     key: "cup",
-    value: "cốc",
-  },
+    value: "tách",
+  },{
+    key:"handbag",
+    value:"túi xách"
+  }
+  ,{
+    key:"backpack",
+    value:"ba lô"
+  }
+  ,{
+    key:"tie",
+    value:"cà vạt"
+  }
+  ,
   {
     key: "bottle",
     value: "chai",

@@ -39,7 +39,12 @@ const ImageForm = () => {
             },
           }
         );
-        navigate(`/search?query=${res.data.key}`);
+        if(res.data.length === 0){
+          toast.error("Tìm kiếm thất bại, không tìm thấy sản phẩm phù hợp");
+        }
+        else{
+          navigate(`/search?query=${res.data.key}`);
+        }
       }
       toast.warn("Vui lòng đăng tải hình ảnh")
     } catch (err) {
@@ -81,8 +86,8 @@ const ImageForm = () => {
           />
           <label for="file">Choose a file</label>
           <br></br>
-          <div className="flex justify-center mt-5">
-            <Button variant="contained" className="!bg-black" type="submit">
+          <div className="!flex !justify-center !mt-5">
+            <Button variant="contained" className="!bg-black"  type="submit" >
               Search
             </Button>
           </div>

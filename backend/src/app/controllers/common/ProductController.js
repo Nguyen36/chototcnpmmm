@@ -1,5 +1,6 @@
 const { init } = require("../../models/Product");
 const Product = require("../../models/Product");
+const crypto=require('crypto')
 
 class ProductController {
   // [GET] /product/all
@@ -66,7 +67,7 @@ class ProductController {
       Product.init();
 
       const product = new Product(formData);
-      console.log(product._id);
+      product._id=crypto.randomInt(1000,9999)
       product
         .save()
         .then((product) => res.status(200).json(product))

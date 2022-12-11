@@ -26,7 +26,7 @@ export const editProduct = async(product,dispatch,navigate,id,accessToken) =>{
        const res= await axios.put("/product/edit/"+id,product,{
         headers: {token: `Bearer ${accessToken}`},})
        dispatch(editProductSuccess(res.data))
-        //navigate('/login')
+        navigate('/seller/products')
        
            
    }catch(err){

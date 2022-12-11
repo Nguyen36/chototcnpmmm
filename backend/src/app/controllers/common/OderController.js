@@ -54,7 +54,6 @@ class OderController {
         const formData= req.body
         
     
-
         const newOder = new Oder(formData)
 
         newOder.save()

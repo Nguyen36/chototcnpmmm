@@ -63,7 +63,7 @@ const Sidebar = () => {
           <p className="title">Activity</p>
          
           
-          <Link to="/logout" onClick={handleLogout} style={{ textDecoration: "none" }}>
+          <Link to="/" onClick={handleLogout} style={{ textDecoration: "none" }}>
           <li>
             <ExitToAppIcon className="icon" />
             <span>Đăng xuất</span>

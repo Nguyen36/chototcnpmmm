@@ -13,6 +13,7 @@ import {
   get1Product,
 } from "../../../redux/apiProduct";
 import { axiosClient as axios } from '../../../api';
+import { toast } from "react-toastify";
 
 const New = ({ title, action }) => {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const New = ({ title, action }) => {
   const [file, setFile] = useState(selectedUser?.image);
   const [name, setName] = useState(selectedUser?.name);
   const [price, setPrice] = useState(selectedUser?.price);
-  const [category_id, setCategory] = useState(selectedUser?.category_id||"1");
+  const [category_id, setCategory] = useState(selectedUser?.category_id?._id);
   const [brand_id, setBrand] = useState(selectedUser?.brand_id);
   const [amount, setAmount] = useState(selectedUser?.amount);
   const [description, setDescription] = useState(selectedUser?.description);
@@ -35,6 +36,7 @@ const New = ({ title, action }) => {
   const [productState, setProductState] = useState();
   const [id,setId]=useState()
   const { productid } = useParams();
+  console.log(category_id)
   const handleImage=(img)=>{
     if(img){
       return img[0].base64
@@ -66,25 +68,41 @@ const New = ({ title, action }) => {
   const handleInsert = (e) => {
     e.preventDefault();
     let images = []
-    for(let i = 0; i < file.length; i++){
-      images.push(file[i].base64)
+    if(file){
+      for(let i = 0; i < file.length; i++){
+        images.push(file[i].base64)
+      }
     }
-    const newProduct = {
-      _id: id,
-      name,
-      price,
-      category_id,
-      image: images,
-      amount: 1,
-      brand_id,
-      seller_id: user._id,
-      status,
-      description,
-    };
-    if(action =='new'){
+    if(action=='new'){
+      const newProduct = {
+        _id: id,
+        name,
+        price,
+        category_id,
+        image: images,
+        amount: 1,
+        brand_id,
+        seller_id: user._id,
+        status,
+        description,
+      };
       createProduct(newProduct, dispatch, navigate, productid, user?.accessToken);
-    }else{
+
+    }
+    else{
+      const newProduct = {
+        name,
+        price,
+        category_id,
+        image: images,
+        amount: 1,
+        brand_id,
+        seller_id: user._id,
+        status,
+        description,
+      };
       editProduct(newProduct,dispatch,navigate, productid, user?.accessToken)
+
     }
    
     
@@ -164,8 +182,7 @@ const New = ({ title, action }) => {
                 <br></br>
               <select
                 className="table-group-action-input form-control"
-                placeholder={selectedUser?.category_id}
-                value={category_id}
+                value={category_id||selectedUser?.category_id?._id}
                 onChange={(e) => {
                   console.log(category_id)
                   setCategory(e.target.value);
@@ -176,7 +193,6 @@ const New = ({ title, action }) => {
                 <option value="3">Điện tử</option>
                 <option value="4">Nội thất</option>
                 <option value="5">Thời Trang</option>
-                <option value="6">Văn phòng</option>
 
               </select>
 
