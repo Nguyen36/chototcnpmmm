@@ -4,7 +4,6 @@ const multer = require("multer");
 const tfnode = require("@tensorflow/tfjs-node");
 const cocoSsd = require("@tensorflow-models/coco-ssd");
 const fs = require("fs");
-// const translate = require("translate");
 const { promisify } = require("util");
 let cocoModel = [
   {
@@ -113,13 +112,13 @@ router.post("/search", upload.single("file"), async (req, res) => {
 });
 const readImage = (path) => {
   const imageBuffer = fs.readFileSync(path);
-  // const tfimage = tfnode.node.decodeImage(imageBuffer);
+  const tfimage = tfnode.node.decodeImage(imageBuffer);
   return tfimage;
 };
 const objectDetection = async (path) => {
   const image = readImage(path);
 
-  // const model = await cocoSsd.load();
+  const model = await cocoSsd.load();
   const predictions = await model.detect(image);
   return predictions;
 };
