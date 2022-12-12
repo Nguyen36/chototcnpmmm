@@ -45,7 +45,9 @@ const Single = () => {
     const res=await axios.put(`http://localhost:8000/oder/edit/${orderId}`,{
       status:status
     })
-    console.log(res.status)
+    if(res.status===200){
+      navigate('/seller/orders')
+    }
 
   }
   const currencyFormat = (num) => {
@@ -119,7 +121,7 @@ const Single = () => {
                   <span className="itemKey">Status:</span>
                   <select className="a" onChange={(e)=>setStatus(e.target.value)} value ={status} > 
                     <option value="1" >Chờ xác nhận</option>
-                    <option value="2" >Đang giao</option>
+                    <option value="2" >Đang vận chuyển</option>
                     <option value="3" >Đã giao</option>
                     <option value="4" >Đã hủy</option>
                   </select>

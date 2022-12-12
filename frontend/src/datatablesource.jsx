@@ -231,7 +231,7 @@ export const OderColumns = [
       return (
         <div className="cellWithImg">
          
-          {params.row.customer_id.fullname||''}
+          {params.row?.customer_id?.fullname||''}
         </div>
       );
     },

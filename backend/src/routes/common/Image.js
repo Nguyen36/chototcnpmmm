@@ -148,7 +148,7 @@ const readImage = (path) => {
 };
 const objectDetection = async (path) => {
   const image = readImage(path);
-
+  
   const model = await cocoSsd.load();
   const predictions = await model.detect(image);
   return predictions;
