@@ -13,7 +13,7 @@ class ProductController {
         res.status(200).json(product);
       })
       .catch(() => {
-        res.status(500).json(err);
+        res.status(400).json(err);
       });
 
     // res.send('detail'+req.params.slug)
@@ -26,7 +26,7 @@ class ProductController {
       await Product.findByIdAndDelete(req.params.id);
       res.status(200).json("Product deleted");
     } catch (err) {
-      return res.status(500).json(err);
+      return res.status(400).json(err);
     }
   }
 
@@ -73,7 +73,7 @@ class ProductController {
         .then((product) => res.status(200).json(product))
         .catch((error) => {
           console.log(error);
-          res.status(500).json(error);
+          res.status(400).json(error);
         });
     } catch (error) {
       console.log(error);
@@ -85,7 +85,7 @@ class ProductController {
       .limit(1)
       .then((product) => res.status(200).json(product))
       .catch((err) => {
-        res.status(500).json(err);
+        res.status(400).json(err);
       });
   }
 
@@ -96,7 +96,7 @@ class ProductController {
         res.status(200).json(product);
       })
       .catch(() => {
-        res.status(500).json(err);
+        res.status(400).json(err);
       });
 
     // res.send('detail'+req.params.slug)
@@ -109,7 +109,7 @@ class ProductController {
         res.status(200).json(product);
       })
       .catch(() => {
-        res.status(500).json(err);
+        res.status(400).json(err);
       });
 
     // res.send('detail'+req.params.slug)
@@ -124,7 +124,7 @@ class ProductController {
         res.status(200).json(product);
       })
       .catch(() => {
-        res.status(500).json(err);
+        res.status(400).json(err);
       });
 
     // res.send('detail'+req.params.slug)
@@ -136,7 +136,7 @@ class ProductController {
       .limit(1)
       .then((product) => res.status(200).json(product))
       .catch((err) => {
-        return res.status(500).json(err);
+        return res.status(400).json(err);
       });
   }
 
@@ -158,10 +158,10 @@ class ProductController {
         await Product.find({ name: { $regex: name } })
         .then((product) => res.status(200).json(product))
         .catch((err) => {
-            return res.status(500).json(err);
+            return res.status(400).json(err);
         });
         } catch (error) {
-            return res.status(500).json(error);
+            return res.status(400).json(error);
         }
   }
 }

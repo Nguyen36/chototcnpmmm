@@ -11,7 +11,7 @@ class OderDetailController {
                     
             })
             .catch(()=>{
-                res.status(500).json(err);
+                res.status(400).json(err);
             })
         
         // res.send('detail'+req.params.slug)    
@@ -23,7 +23,7 @@ class OderDetailController {
             await OderDetail.findByIdAndDelete(req.params.id);
             res.status(200).json("OderDetail deleted");
           } catch (err) {
-           return res.status(500).json(err);
+           return res.status(400).json(err);
           }
         }
      // [GET] /oderDetail/get/:id
@@ -53,7 +53,7 @@ class OderDetailController {
         newOder.save()
             .then(() => res.status(200).json(newOder))
             .catch(error => {
-                res.status(500).json(error)
+                res.status(400).json(error)
             })
         
     }
@@ -62,7 +62,7 @@ class OderDetailController {
         await OderDetail.find().count()
             .then((user)=> res.status(200).json(user))
             .catch((err) =>{
-                return res.status(500).json(err);
+                return res.status(400).json(err);
             })
     }
 

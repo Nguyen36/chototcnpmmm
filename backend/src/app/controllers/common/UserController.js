@@ -14,7 +14,7 @@ class UserController {
                     
             })
             .catch(()=>{
-                res.status(500).json(err);
+                res.status(400).json(err);
             })
         
         // res.send('detail'+req.params.slug)    
@@ -26,7 +26,7 @@ class UserController {
             await User.findByIdAndDelete(req.params.id);
             res.status(200).json("User deleted");
           } catch (err) {
-           return res.status(500).json(err);
+           return res.status(400).json(err);
           }
         }
      // [GET] /user/get/:id
@@ -55,7 +55,7 @@ class UserController {
                 res.status(200).json('Updated Success')
             })
             .catch((err) =>{
-                return res.status(500).json(err);
+                return res.status(400).json(err);
             })
         
     }
@@ -107,7 +107,7 @@ class UserController {
             // ])
             .then((user)=> res.status(200).json(user))
             .catch((err) =>{
-                return res.status(500).json(err);
+                return res.status(400).json(err);
             })
     }
 }

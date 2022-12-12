@@ -17,7 +17,7 @@ class AuthController {
     user.save()
       .then(() => res.status(200).json(user))
       .catch(error => {
-        res.status(500).json(error)
+        res.status(404).json("Username đã tồn tại")
         console.log(error)
       })
 
@@ -128,7 +128,7 @@ class AuthController {
           res.status(200).json({ ...others, accessToken });
         })
         .catch(error => {
-          res.status(500).json(error)
+          res.status(400).json(error)
           console.log(error)
         })
     }else{
