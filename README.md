@@ -54,6 +54,7 @@ Một số công cụ, thư viện được tích hợp như:
 - EmailJS (Dùng cho việc gửi email xác thực)
 - Redux Toolkit
 - ...
+
 Trang web được xây dựng hướng tới 2 đối tượng, đi kèm với các chức năng như sau:
 - Guest
     + Đăng ký
